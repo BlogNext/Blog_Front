@@ -1,4 +1,5 @@
 import './global.less';
+// bg()
 // import Vconsole from 'vconsole'
 // import { wxJssdk } from '@/utils/wx'
 // import { weChatJssdk } from '@/services/api'

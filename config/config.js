@@ -25,6 +25,7 @@ const config = {
         // dynamicImport: {
         //   webpackChunkName: true,
         // },
+        title: '双旦',
         dll: true,
         routes: {
           exclude: [
@@ -61,7 +62,7 @@ const config = {
   //     mediaQuery: false,
   //   }),
   // ],
-  publicPath: '/',
+  publicPath: './',
   base: '/',
   // targets: {
   //   ie: 9,
