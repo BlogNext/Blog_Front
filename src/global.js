@@ -1,7 +1,7 @@
 import './global.less';
 // import Vconsole from 'vconsole'
-import { wxJssdk } from '@/utils/wx'
-import { weChatJssdk } from '@/services/api'
+// import { wxJssdk } from '@/utils/wx'
+// import { weChatJssdk } from '@/services/api'
 // new Vconsole()
 
 

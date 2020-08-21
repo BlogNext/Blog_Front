@@ -25,7 +25,6 @@ const config = {
         // dynamicImport: {
         //   webpackChunkName: true,
         // },
-        title: '双旦',
         dll: true,
         routes: {
           exclude: [
