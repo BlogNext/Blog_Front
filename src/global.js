@@ -17,11 +17,11 @@ import { weChatJssdk } from '@/services/api'
 
 
 
-weChatJssdk(window.location.href).then(res => {
-  wxJssdk(res.data, {
-    title: '',
-    desc: '',
-    link: '',
-    imgUrl: '',
-  }, null)
-})
+// weChatJssdk(window.location.href).then(res => {
+//   wxJssdk(res.data, {
+//     title: '',
+//     desc: '',
+//     link: '',
+//     imgUrl: '',
+//   }, null)
+// })
