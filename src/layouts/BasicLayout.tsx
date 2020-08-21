@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import BG from '../assets/js/bg.js'
 import "./index.less";
 
 interface IProps {
@@ -7,7 +8,9 @@ interface IProps {
 }
 interface IState {}
 class BasicLayout extends Component <IProps, IState> {
-
+  componentDidMount = () => {
+    // BG
+  }
   public render = () => {
     const {
       children,
@@ -20,6 +23,7 @@ class BasicLayout extends Component <IProps, IState> {
 
       <div className="layout" >
         {children}
+        
       </div>
     );
 
