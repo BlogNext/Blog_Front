@@ -1,0 +1,111 @@
+:global {
+  .index {
+    overflow-y: scroll;
+    // background: linear-gradient(90deg,rgba(245,124,0,1),rgba(244,95,0,1));
+    background: url('https://sckc-1256037416.cos.ap-beijing.myqcloud.com/res_submit_draw_2020/bg.png') no-repeat  top;
+    background-size: 100%;
+    overflow-x: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    &-logo {
+      width: 100%;
+      & > img {
+        margin: 16px 0 0 26px;
+        width: 216px;
+      }
+    }
+    &-title {
+      margin: 0 auto;
+      width: 670px;
+    }
+
+    &-rule {
+      margin-bottom: 24px;
+      width: 100%;
+      justify-content: flex-end;
+      & > span {
+        width:136px;
+        height:47px;
+        background:rgba(255,228,1,1);
+        border:4px solid rgba(246, 143, 100, 1);
+        border-radius:23px 0 0 23px;
+        font-size:24px;
+        font-family:Adobe Heiti Std;
+        font-weight:normal;
+        color:rgba(150,46,0,1);
+      }
+    }
+
+    &-time {
+      width: 686px;
+    }
+
+    &-count {
+      margin-top: 33px;
+      font-size:28px;
+      font-family:Adobe Heiti Std;
+      font-weight:normal;
+      color:rgba(255,255,255,1);
+      position: relative;
+      & > span {
+        margin: 0 17px;
+        width:53px;
+        height:49px;
+        background:rgba(252,215,5,1);
+        border-radius:10px;
+        font-size:36px;
+        font-family:Adobe Heiti Std;
+        font-weight:bold;
+        color:rgba(239,62,0,1);
+      }
+      &-more {
+        position: absolute;
+        top: calc(50% - 11px);
+        // width: 110px;
+        font-size:22px;
+        right: -130px;
+        font-family:Adobe Heiti Std;
+        font-weight:normal;
+        color:rgba(255,211,3,1);
+      }
+    }
+
+    &-draw {
+      margin: 28px 0;
+      width:686px;
+      height:925px;
+      box-sizing: border-box;
+      padding: 45px;
+      // box-shadow:0px 7px 5px 0px rgba(177,55,0,0.64);
+      border-radius:25px;
+      background: url('https://sckc-1256037416.cos.ap-beijing.myqcloud.com/res_submit_draw_2020/draw_bg.png') no-repeat;
+      background-size: 100% 100%;
+    }
+    &-fixed {
+      position: fixed;
+      top: 85%;
+      right: 0;
+      width: 134px;
+      z-index: 10;
+    }
+    &-total {
+      margin: 10px 0 20px;
+      flex-direction: column;
+      font-size:27px;
+      font-family:Adobe Heiti Std;
+      font-weight:normal;
+      // text-decoration:underline;
+      color:rgba(255,255,255,1);
+      // line-height:72px;
+      &-list {
+        margin-bottom: 20px;
+        & > span {
+          text-decoration:underline;
+        }
+      }
+      &-use {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
