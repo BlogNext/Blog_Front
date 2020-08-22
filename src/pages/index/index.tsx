@@ -24,8 +24,8 @@ class Index extends Component<IndexProps, IndexState> {
 
   public render() {
     return (
-      <div className={`index flex`}>
-        Blog_Next
+      <div className={`index`}>
+        333sdfsdfdfsdfds
       </div>
     );
   }

@@ -22,9 +22,9 @@ const config = {
         dva: {
           hmr: true,
         },
-        // dynamicImport: {
-        //   webpackChunkName: true,
-        // },
+        dynamicImport: {
+          webpackChunkName: true,
+        },
         title: '双旦',
         dll: true,
         routes: {
@@ -36,7 +36,7 @@ const config = {
             /components\//,
           ],
         },
-        hd: true,
+        // hd: true,
         fastClick: true,
       },
     ],
@@ -64,9 +64,9 @@ const config = {
   // ],
   publicPath: './',
   base: '/',
-  // targets: {
-  //   ie: 9,
-  // },
+  targets: {
+    ie: 9,
+  },
   history: 'hash',
   runtimePublicPath: true,
   hash: true,

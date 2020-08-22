@@ -26,3 +26,22 @@ import './global.less';
 //     imgUrl: '',
 //   }, null)
 // })
+
+
+/**
+ *  项目配置
+ */
+(() => {
+  if(window.localStorage.getItem('blog_config')) return false
+
+  const data = {
+    name: 'LaughingZhu',
+    theme: 'default',
+    color: 'default',
+    bgColor: 'default',
+    fixHeader: true,
+    fixMenu: true,
+    fixTag: true
+  }
+  window.localStorage.setItem('blog_config', JSON.stringify(data))
+})()
