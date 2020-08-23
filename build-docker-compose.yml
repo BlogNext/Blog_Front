@@ -1,0 +1,27 @@
+version: '3'
+services:
+  blog_next_front:
+    container_name: blog_next_front
+    #指定构建的Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+      #工作目录空间
+    working_dir: /app
+    volumes:
+      #jenkins执行的时候，   ./是项目的路径
+      - ./:/app
+      - /home/xiaochen/BlogNext/code/Blog_Front/dist:/app/dist
+      #这里啊琛哥确认编译之后的文件目录
+    command:
+      - /bin/sh
+      - -c
+      - |
+        npm i
+        npm run build
+    #设置环境变量
+    networks:
+      - blog_next
+networks:
+  blog_next:
+    external: true
