@@ -1,6 +1,32 @@
 :global {
   .component-header {
     width: 100%;
-   
+    height: 100%;
+    &_title {
+      width: 220px;
+      font-size: 14px;
+      font-weight: 700;
+      height: 100%;
+      & > span {
+        margin-left: 5px;
+        font-size: 18px;
+      }
+    }
+    &_container {
+      width: calc(100% - 440px);
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0 20px;
+      justify-content: flex-start;
+      &_search {
+        border-radius: 20px;
+        width: 170px !important;
+      }
+    }
+    &_tools {
+      width: 220px;
+      height: 100%;
+      border: 1px solid red;
+    }
   }
 }

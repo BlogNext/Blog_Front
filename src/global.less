@@ -1,4 +1,12 @@
 /* reset */
+:global {
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url('./assets/font/sourcesanspro.woff') format('woff');
+    font-weight: 400;
+    font-style: Black;
+  }
+}
 html {
   -webkit-text-size-adjust: none;
   -webkit-user-select: none;
@@ -76,7 +84,7 @@ textarea {
 
 html,
 body {
-  font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif,monospace;
+  font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif,monospace !important;
   font-size: 14px;
   -webkit-overflow-scrolling:touch;
   -webkit-font-smoothing: antialiased;
