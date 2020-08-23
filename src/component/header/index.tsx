@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {HomeOutlined} from '@ant-design/icons';
+import { HomeOutlined, SettingOutlined, MessageOutlined, BulbOutlined, KeyOutlined } from '@ant-design/icons';
+
 import { Input } from 'antd'
 import './style.less'
 
@@ -23,7 +24,18 @@ export default function Header (props: any) {
       </div>
 
       <div className="component-header_tools">
-
+        <div className="component-header_tools_item">
+          <SettingOutlined />
+        </div>
+        <div className="component-header_tools_item">
+        <MessageOutlined />
+        </div>
+        <div className="component-header_tools_item">
+        <BulbOutlined />
+        </div>
+        <div className="component-header_tools_item">
+        <KeyOutlined />
+        </div>
       </div>
     </div>
   )
