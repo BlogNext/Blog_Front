@@ -1,5 +1,10 @@
 :global {
   .component-aside {
+    width: 100%;
+    // height: 100vw;
+    height: calc(100vh - 50px);
+    overflow: hidden;
+    position: relative;
     &_info {
       width: 100%;
       height: 219px;
@@ -71,6 +76,29 @@
             line-height: 1;
             cursor: pointer;
           }
+        }
+      }
+    }
+
+    &_tools {
+      width: 220px;
+      justify-content: space-between;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      &_item {
+        flex: auto !important;
+        cursor: pointer;
+        color: #8b8e99;
+        flex-direction: column;
+        &--icon {
+          font-size: 18px;
+          color: #8b8e99;
+        }
+        &--label {
+          font-size: 14px;
+          line-height: 2;
+          cursor: pointer;
         }
       }
     }

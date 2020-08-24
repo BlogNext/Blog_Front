@@ -1,23 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { createFromIconfontCN } from '@ant-design/icons';
-import { Divider } from 'antd'
+import { Divider, Tooltip } from 'antd'
 import './style.less'
 
-const menu = [
+
+// 本地菜单config
+
+const menuData = [
   {
     label: 'Navigation',
+    path:'/Navigation',
     children: [
       {
         icon: 'icon-git-branch',
-        label: 'Repository'
+        label: 'Repository',
+        path:'/Repository',
+        children: []
       },
       {
         icon: 'icon-books',
-        label: 'Books'
+        label: 'Books',
+        path:'/Books',
+        children: []
       },
       {
         icon: 'icon-time',
-        label: 'TimeMachine'
+        path:'/TimeMachine',
+        label: 'TimeMachine',
+        children: []
       }
     ]
   },
@@ -26,15 +36,21 @@ const menu = [
     children: [
       {
         icon: 'icon-categories_',
-        label: 'Categories'
+        path:'/Categories',
+        label: 'Categories',
+        children: []
       },
       {
         icon: 'icon-pages',
-        label: 'Pages'
+        path:'/RepositPagesory',
+        label: 'Pages',
+        children: []
       },
       {
         icon: 'icon-Link',
-        label: 'Links'
+        path:'/Links',
+        label: 'Links',
+        children: []
       }
     ]
   }
@@ -42,13 +58,31 @@ const menu = [
 
 // iconfont 库
 const MyIcon = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2023298_mwxq6tfy5w.js', // 在 iconfont.cn 上生成
+  scriptUrl: '//at.alicdn.com/t/font_2023298_wzfwjgkmi2.js', // 在 iconfont.cn 上生成
 });
+
+const toolsData = [
+  {
+    label: '管理',
+    desc: '后台管理',
+    icon: 'icon-setting'
+  },
+  {
+    label: '文章',
+    desc: '文章RSS',
+    icon: 'icon-rss1'
+  },
+  {
+    label: 'Comment',
+    desc: '评论RSS地址',
+    icon: 'icon-comment'
+  },
+]
 
 export default function Aside (props: any) {
   // 遍历菜单
   const menuView = () => {
-    return menu.length > 0 && menu.map((item: any, index: number) => {
+    return menuData.length > 0 && menuData.map((item: any, index: number) => {
       return (
         <div className="component-aside_menu_item" key={`component-aside_menu_item-${index}`}>
           <div className="component-aside_menu_item--title">{item.label}</div>
@@ -66,6 +100,20 @@ export default function Aside (props: any) {
       )
     })
   }
+  
+  const toolsView = () => {
+    return toolsData.length > 0 && toolsData.map((item: any, index: number) => {
+      return (
+        <Tooltip placement="top" title={item.desc} key={`aside_tools_item-${index}`}>
+          <div className="component-aside_tools_item flex">
+            <MyIcon className="component-aside_tools_item--icon" type={item.icon} />
+            <div className="component-aside_tools_item--label">{item.label}</div>
+          </div>
+        </Tooltip>
+        
+      )
+    })
+  }
 
 
   return(
@@ -77,7 +125,13 @@ export default function Aside (props: any) {
       </div>
       <Divider style={{ backgroundColor: '#2e3344', height: '1px', marginTop: '0'}} />
 
-      <div className="component-aside_menu">{ menuView() }</div>
+      <div className="component-aside_menu">
+        { menuView() }
+      </div>
+
+      <div className="component-aside_tools flex">
+        { toolsView() }
+      </div>
     </div>
   )
 }
