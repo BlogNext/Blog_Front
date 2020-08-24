@@ -41,6 +41,39 @@
         color: #8b8e99!important;
       }
     }
+
+    &_menu {
+      width: 100%;
+      &_item {
+        width: 100%;
+        color: #8b8e99;
+        &--title {
+          box-sizing: border-box;
+          padding: 0 15px;
+          width: 100%;
+          font-size: 12px;
+        }
+        &--children {
+          box-sizing: border-box;
+          padding: 12px 25px;
+          width: 100%;
+          justify-content: flex-start;
+          &:hover {
+            background-color: rgba(30, 144, 255, .2);
+          }
+          &--icon {
+            font-size: 14px;
+            color: #8b8e99;
+          }
+          &--label {
+            padding-left: 10px;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+          }
+        }
+      }
+    }
   }
 
   @keyframes avatar{
