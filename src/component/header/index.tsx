@@ -23,18 +23,18 @@ export default function Header (props: any) {
         />
       </div>
 
-      <div className="component-header_tools">
-        <div className="component-header_tools_item">
-          <SettingOutlined />
+      <div className="component-header_tools flex">
+        <div className="component-header_tools_item flex">
+          <SettingOutlined className="component-header_tools_item_icon" />
         </div>
-        <div className="component-header_tools_item">
-        <MessageOutlined />
+        <div className="component-header_tools_item flex">
+          <MessageOutlined className="component-header_tools_item_icon" />
         </div>
-        <div className="component-header_tools_item">
-        <BulbOutlined />
+        <div className="component-header_tools_item flex">
+          <BulbOutlined className="component-header_tools_item_icon" />
         </div>
-        <div className="component-header_tools_item">
-        <KeyOutlined />
+        <div className="component-header_tools_item flex">
+          <KeyOutlined className="component-header_tools_item_icon" />
         </div>
       </div>
     </div>
