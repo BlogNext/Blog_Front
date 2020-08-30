@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./index.less";
 import { Toast } from "antd-mobile";
 import { TweenMax } from 'gsap';
+import List from '../../component/lsit'
 
 interface IndexProps {}
 interface IndexState {
@@ -25,7 +26,7 @@ class Index extends Component<IndexProps, IndexState> {
   public render() {
     return (
       <div className={`index`}>
-        333sdfsdfdfsdfds
+        <List />
       </div>
     );
   }
