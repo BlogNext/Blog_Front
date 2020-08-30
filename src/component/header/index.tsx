@@ -3,10 +3,14 @@ import { HomeOutlined, SettingOutlined, MessageOutlined, BulbOutlined, KeyOutlin
 
 import { Input } from 'antd'
 import './style.less'
+// import { TweenMax, Split } from 'gsap';
 
 const { Search } = Input;
 
 export default function Header (props: any) {
+  useEffect(() => {
+    
+  }, [''])
   return(
     <div className="component-header flex">
       <div className="component-header_title flex">
