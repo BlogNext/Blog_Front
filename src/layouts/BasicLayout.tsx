@@ -3,6 +3,7 @@ import "./index.less";
 import Header from '../component/header';
 import Aside from '../component/aslide'
 import SlideBar from '../component/slidebar'
+import Slogan from '../component/slogan'
 
 interface IProps {
   children: any,
@@ -30,7 +31,10 @@ class BasicLayout extends Component <IProps, IState> {
         <div className="layout-container">
           <div className="layout-container-aside"><Aside /></div>
           <div className="layout-container-content flex">
-            <div className="layout-container-content-main">{children}</div>
+            <div className="layout-container-content-main">
+              <Slogan />
+              {children}
+            </div>
             <div className="layout-container-content-slidebar"><SlideBar /></div>
           </div>
         </div>
