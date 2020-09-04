@@ -84,14 +84,14 @@ export default function Aside (props: any) {
   const menuView = () => {
     return menuData.length > 0 && menuData.map((item: any, index: number) => {
       return (
-        <div className="component-aside_menu_item" key={`component-aside_menu_item-${index}`}>
-          <div className="component-aside_menu_item--title">{item.label}</div>
+        <div className="component-aside-container_menu_item" key={`component-aside-container_menu_item-${index}`}>
+          <div className="component-aside-container_menu_item--title">{item.label}</div>
           {item.children.length > 0 && (
             item.children.map((children: any, cIndex: number) => {
               return (
-                <div className="component-aside_menu_item--children flex" key={`component-aside_menu_item--children${cIndex}`}>
-                  <MyIcon className="component-aside_menu_item--children--icon" type={children.icon} />
-                  <div className="component-aside_menu_item--children--label">{ children.label }</div>
+                <div className="component-aside-container_menu_item--children flex" key={`component-aside-container_menu_item--children${cIndex}`}>
+                  <MyIcon className="component-aside-container_menu_item--children--icon" type={children.icon} />
+                  <div className="component-aside-container_menu_item--children--label">{ children.label }</div>
                 </div>
               )
             })
@@ -105,9 +105,9 @@ export default function Aside (props: any) {
     return toolsData.length > 0 && toolsData.map((item: any, index: number) => {
       return (
         <Tooltip placement="top" title={item.desc} key={`aside_tools_item-${index}`}>
-          <div className="component-aside_tools_item flex">
-            <MyIcon className="component-aside_tools_item--icon" type={item.icon} />
-            <div className="component-aside_tools_item--label">{item.label}</div>
+          <div className="component-aside-container_tools_item flex">
+            <MyIcon className="component-aside-container_tools_item--icon" type={item.icon} />
+            <div className="component-aside-container_tools_item--label">{item.label}</div>
           </div>
         </Tooltip>
         
@@ -117,21 +117,24 @@ export default function Aside (props: any) {
 
 
   return(
-    <div className="component-aside">
+    <div className="component-aside flex">
       <div className="component-aside_info flex">
         <div className="component-aside_info-avatar"/>
         <div className="component-aside_info-name">LaughingZhu</div>
         <div className="component-aside_info-slogan">Make or miss win or lose I put my name on it</div>
       </div>
       <Divider style={{ backgroundColor: '#2e3344', height: '1px', marginTop: '0'}} />
+      
+      <div className="component-aside-container flex">
+        <div className="component-aside-container_menu">
+          { menuView() }
+        </div>
 
-      <div className="component-aside_menu">
-        { menuView() }
+        <div className="component-aside-container_tools flex">
+          { toolsView() }
+        </div>
       </div>
-
-      <div className="component-aside_tools flex">
-        { toolsView() }
-      </div>
+     
     </div>
   )
 }
