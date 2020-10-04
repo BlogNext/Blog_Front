@@ -17,6 +17,7 @@
     <script>
 
         // 百度统计
+        console.log('百度统计');
         var _hmt = _hmt || [];
         _hmt.push(['_requirePlugin', 'UrlChangeTracker', {
             shouldTrackUrlChange: function (newPath, oldPath) {
@@ -27,7 +28,7 @@
                 **/
 
 
-                
+
                 // 默认newPath和oldPath不相等的情况下触发
                 return newPath && oldPath;
             }}
