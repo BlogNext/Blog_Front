@@ -10,7 +10,12 @@ export default function Slogan (props: any) {
 
   const sloganClick = () => {
     console.log('slogan click');
-    (window as any)._hmt.push(['_trackEvent', 'slogan', 'click']);
+    (window as any)._hmt.push(['_trackEvent', 'slogan点击', 'click']);
+    (window as any).gtag('event', 'slogan click', {
+      'event_category': 'click',
+      'event_label': 'slogan',
+    });
+    
   }
 
 

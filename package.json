@@ -22,7 +22,9 @@
     "swiper": "^5.3.7",
     "umi-request": "^1.0.6",
     "vconsole": "^3.3.4",
-    "weixin-js-sdk": "^1.4.0-test"
+    "weixin-js-sdk": "^1.4.0-test",
+    "umi-plugin-react": "^1.8.0"
+
   },
   "devDependencies": {
     "@types/jest": "^23.3.12",
@@ -40,7 +42,6 @@
     "postcss-px-to-viewport": "^1.1.1",
     "react-test-renderer": "^16.7.0",
     "umi": "^2.9.0",
-    "umi-plugin-react": "^1.8.0",
     "umi-types": "^0.3.0"
   },
   "lint-staged": {
