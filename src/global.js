@@ -45,3 +45,9 @@ import './global.less';
   }
   window.localStorage.setItem('blog_config', JSON.stringify(data))
 })()
+
+// 监听hash router change
+window.addEventListener('hashchange', (e) => {
+  const { newURL, oldURL } = e
+  console.log(newURL, oldURL)
+}, false);
