@@ -2,15 +2,37 @@
 const config = {
   treeShaking: true,
   routes: [
+    
+    {
+      path: '/admin',
+      component: '../layouts/AdminLayout',
+      routes: [
+        {
+          path: '/admin',
+          component: './admin/login',
+          // redirect: '/admin/login'
+        },
+        {
+          path: '/admin/login',
+          component: './admin/login'
+        }
+      ]
+    },
     {
       path: '/',
       component: '../layouts/BasicLayout',
       routes: [
         {
           path: '/',
-          component: '../pages/index',
+          component: './index',
         },
-      ]
+        {
+          path: '/index',
+          redirect: '/',
+          component: './index',
+        },
+      ],
+      
     },
   ],
   plugins: [
@@ -25,7 +47,7 @@ const config = {
         dynamicImport: {
           webpackChunkName: true,
         },
-        title: '双旦',
+        title: `LaughingZhu's Blog`,
         dll: true,
         routes: {
           exclude: [
@@ -42,11 +64,11 @@ const config = {
     ],
   ],
   proxy: {
-    '/api': {
-      target: '',
+    '/blackend': {
+      target: 'http://laughingzhu.com:18083/blackend',
       changeOrigin: true,
       pathRewrite: {
-        '^/api': '',
+        '^/blackend': '',
       },
       secure: false,
     },
