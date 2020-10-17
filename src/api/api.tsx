@@ -27,3 +27,8 @@ export const getCode = async (data: any) => {
     data
   })
 }
+export const getCategoryList = () => {
+  return request('/blackend/blog_type/get_list', {
+    method: 'GET'
+  })
+}

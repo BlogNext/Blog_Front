@@ -27,11 +27,12 @@ function Menu (props: any) {
     if(index === current) return false
 
     setCurrent(index)
+    return false;
   }
 
   const listView = listData.length > 0 && listData.map((item: any, index: number) => {
     return (
-      <div className="component-slidebar--menu_content--list-item flex">
+      <div className="component-slidebar--menu_content--list-item flex" key={`component-slidebar--menu_content--list-item-${index}`}>
         <img src={require('../../assets/img/avatar.jpg')} alt="" className="component-slidebar--menu_content--list-item--avatar"/>
         <div className="component-slidebar--menu_content--list-item--desc">
           <div className="component-slidebar--menu_content--list-item--desc_label">记得快的三个大嫁风尚挂号费的</div>
