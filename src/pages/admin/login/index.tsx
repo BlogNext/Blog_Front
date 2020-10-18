@@ -41,7 +41,7 @@ export default class Login extends Component<IProps, IState> {
   }
 
   // 聚焦、值变更 => 小熊状态改变
-  onBlurHandle = (type: string) => {
+  onFocusHandle = (type: string) => {
     console.log(type)
     const { email, password } = this.state
     if(type === 'email') {
@@ -121,7 +121,7 @@ export default class Login extends Component<IProps, IState> {
                 name="username"
                 rules={[{ required: true, message: 'Please input your username!' }]}
               >
-                <Input onFocus={() => this.onBlurHandle('email')} value={email} onChange={(e) => this.onChangeHandle('email', e.target.value)} type='text' placeholder='Email' />
+                <Input onFocus={() => this.onFocusHandle('email')} value={email} onChange={(e) => this.onChangeHandle('email', e.target.value)} type='text' placeholder='Email' />
               </Form.Item>
   
               <Form.Item
@@ -131,7 +131,7 @@ export default class Login extends Component<IProps, IState> {
                 <Input.Password
                   value={password}
                   type={!showPassword ? 'password' : 'text'}
-                  onFocus={() => this.onBlurHandle('password')} 
+                  onFocus={() => this.onFocusHandle('password')} 
                   onChange={(e) => this.onChangeHandle('pass',  e.target.value)}  placeholder='Password'
                   suffix={showPassword ? <EyeTwoTone onClick={() => this.passwordStatusHandle(false)} /> : <EyeInvisibleOutlined onClick={() => this.passwordStatusHandle(true)} />}
                   // iconRender={() => (showPassword ? <EyeTwoTone onClick={() => this.passwordStatusHandle(false)} /> : <EyeInvisibleOutlined onClick={() => this.passwordStatusHandle(true)} />)}

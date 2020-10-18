@@ -15,6 +15,10 @@ const config = {
         {
           path: '/admin/login',
           component: './admin/login'
+        },
+        {
+          path: '/admin/edit',
+          component: './admin/edit'
         }
       ]
     },
