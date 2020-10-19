@@ -2,13 +2,16 @@ import React, { PureComponent } from 'react'
 import Quill from 'quill'
 import EditHeader from '../../../component/admin/EditHeader'
 import hljs from 'highlight.js';
+import emoji from 'quill-emoji'
+import { Toast } from 'antd-mobile';
 
+//注册ToolbarEmoji，将在工具栏出现emoji；注册TextAreaEmoji，将在文本输入框处出现emoji。VideoBlot是我自定义的视频组件，后面会讲，
 import { uploadFile } from '../../../api/common'
-
+// import { ImageDrop } from './plugin/quill-image-drop-module';
+import 'quill-emoji/dist/quill-emoji.css'
 import 'highlight.js/styles/darcula.css';
 import 'quill/dist/quill.snow.css'
 import './style.less'
-import { Toast } from 'antd-mobile';
 
 
 
@@ -17,6 +20,7 @@ interface IProps {}
 interface IStete {
   richText: any
 }
+const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = emoji
 
 class Edit extends PureComponent<IProps, IStete> {
   richText: any;
@@ -39,6 +43,16 @@ class Edit extends PureComponent<IProps, IStete> {
     hljs.configure({   // optionally configure hljs
       languages: ['javascript', 'php', 'python']
     });
+    Quill.register({
+      'formats/emoji': EmojiBlot,
+      // 'formats/video': VideoBlot,
+      'modules/emoji-shortname': ShortNameEmoji,
+      'modules/emoji-toolbar': ToolbarEmoji,
+      'modules/emoji-textarea': TextAreaEmoji,
+      // 'modules/ImageExtend': ImageExtend, //拖拽图片扩展组件
+      // 'modules/ImageDrop': ImageDrop, //复制粘贴组件
+    }, true);
+    
     let options = {
       debug: 'false',
       modules: {
@@ -55,12 +69,18 @@ class Edit extends PureComponent<IProps, IStete> {
             [{ 'font': [] }],
             [{ 'align': [] }],
             ['link', 'image'],
+            ['emoji'],
             ['clean']                                         // remove formatting button
           ],
           handlers: {
-            image: this.imageHandle
-          }
-        }
+            image: this.imageHandle,
+            emoji: function() {}
+          },
+          
+        },
+        'emoji-toolbar': true,  //是否展示出来
+        "emoji-textarea": false, //我不需要emoji展示在文本框所以设置为false
+        "emoji-shortname": true,
       },
       
       placeholder: 'Write something...',
@@ -81,33 +101,44 @@ class Edit extends PureComponent<IProps, IStete> {
     input.setAttribute('type', 'file')
     input.setAttribute('accept', 'image/*')
     input.click()
-    input.onchange = async () => {
+    input.onchange = () => {
         const file = input.files[0]
         const formData = new FormData()
-        formData.append('modules', '1')
-        formData.append('upload_blog_images', file)
-        const res = this.uploadFile(formData) 
-        const range = richEdit.getSelection()
-        // const link = res.data[0].url
+        formData.append('modules[]', '1')
+        formData.append('file_type[]', '1')
 
+        formData.append('upload_blog_images[]', file)
+        this.uploadFile(formData, (url) => {
+          const range = richEdit.getSelection()
+          richEdit.insertEmbed(range.index, 'image', url)
+
+        })
         // this part the image is inserted
         // by 'image' option below, you just have to put src(link) of img here. 
-        // richEdit.insertEmbed(range.index, 'image', link)
+        
     }
   }
 
-  // 上传照片
-  uploadFile = async (upload_blog_images: any) => {
+  /**
+   * 上传照片
+   * @param upload_blog_images {
+   *    modules   表示这个静态资源是属于哪个功能模块的,
+   *    file_type 表示静态资源文件类型
+   *    file_type 1是图片，2是视频
+   * }
+   * @param callback 
+   */
+  uploadFile = async (upload_blog_images: any, callback: any) => {
     const res = await uploadFile(upload_blog_images)
     if(res.code === 0) {
       // 上传 成功
-
-
+        callback(res.data[0].full_url)
+        return true
     } else {
       // 上传失败
-      Toast.fail(res.message, 2, () => {
-        return false
-      })
+      Toast.fail(res.msg, 2)
+      return false
+
     }
   }
 
