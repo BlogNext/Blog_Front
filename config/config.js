@@ -76,6 +76,14 @@ const config = {
       },
       secure: false,
     },
+    '/common': {
+      target: 'http://laughingzhu.com:18083/common',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/common': '',
+      },
+      secure: false,
+    },
   },
   // extraPostCSSPlugins: [
   //   pxToViewPort({
