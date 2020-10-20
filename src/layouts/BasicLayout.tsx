@@ -32,8 +32,8 @@ class BasicLayout extends Component <IProps, IState> {
   // get category lists => array
   _initCategory = async () => {
     const res = await getCategoryList({...this.state.cateGoryConf})
-    if(res.status === 200) {
-      console.log(res)
+    if(res.code === 0) {
+      res.data.list.length > 0 && localStorage.setItem('blog_tags', JSON.stringify(res.data.list))
     }
   }
 

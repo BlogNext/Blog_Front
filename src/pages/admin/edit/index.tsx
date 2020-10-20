@@ -18,7 +18,13 @@ import './style.less'
 
 interface IProps {}
 interface IStete {
-  richText: any
+  content: string,
+  title: string,
+  abstract: string,
+  tag: any,
+  author: string,
+  bg_info: any,
+  length: number
 }
 const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = emoji
 
@@ -26,19 +32,33 @@ class Edit extends PureComponent<IProps, IStete> {
   richText: any;
   constructor(props: any) {
     super(props)
-    this.richText = React.createRef();
+    this.richText = ''
     this.state = {
-      richText: null
+      content: '',
+      title: '标题',
+      abstract: '摘要',
+      author: 'LaughingZhu',
+      tag: {},
+      bg_info: [],
+      length: 0
     }
   }
 
   
 
   componentDidMount = () => {
-    
+    this._initValueData()
     this._initRickEdit()
   }
 
+  _initValueData = () => {
+    const tagList = JSON.parse(localStorage.getItem('blog_tags'))
+    this.setState({
+      tag: tagList[1]
+    })
+  }
+
+  // 富文本编辑器初始化
   _initRickEdit = () => {
     hljs.configure({   // optionally configure hljs
       languages: ['javascript', 'php', 'python']
@@ -90,6 +110,15 @@ class Edit extends PureComponent<IProps, IStete> {
 
     // _init richtext
     this.richText = new Quill('#admin-edit-richtext', options)
+    this.richText.on('editor-change', (eventName, ...args) => {
+      this.getRichContent()
+      console.log(eventName)
+      if (eventName === 'text-change') {
+        // args[0] will be delta
+      } else if (eventName === 'selection-change') {
+        // args[0] will be old range
+      }
+    });
   }
 
 
@@ -142,16 +171,84 @@ class Edit extends PureComponent<IProps, IStete> {
     }
   }
 
+
+  /**
+   * @desc 博客内容改变 处理函数
+   * @param type 改变对应的 key
+   * @param value 改变对应的 value
+   */
+  valueChange = (type: string, value: any) => {
+    console.log(type, value)
+    switch (type) {
+      case 'title':
+        this.setState({
+          title: value
+        })
+        break;
+      case 'abstract':
+        this.setState({
+          abstract: value
+        })
+        break;
+      case 'tag':
+        this.setState({
+          tag: value
+        })
+        break;
+      case 'author':
+        this.setState({
+          author: value
+        })
+        break;
+      case 'bg_info':
+        this.setState({
+          bg_info: value
+        })
+        break;
+      default:
+        break;
+    }
+
+  }
+
   getRichContent = () => {
-    console.log(this.richText.container.firstChild.innerHTML)
+    
+    this.setState({
+      length: this.richText.getLength()
+    })
+    console.log(this.richText.container.innerHTML)
+  }
+
+  /** 
+   * @desc 发布博客
+   */
+  onSubmit = () => {
+    const { title, abstract, tag, content, bg_info, author, } = this.state
+    const reqData = {
+      title,
+      abstract,
+      content,
+      blog_tupe_id: tag.id,
+      bg_info, author,
+    }
+    console.log(reqData)
   }
 
   render() {
+    const { title, abstract, tag, author, bg_info, length } = this.state
     return(
       <div className="admin-edit flex">
-        <EditHeader onSubmit={this.getRichContent} />
+        <EditHeader
+          title={title}
+          abstract={abstract}
+          tag={tag}
+          bg_info={bg_info}
+          author={author}
+          change={this.valueChange}
+          length={length}
+          onSubmit={this.onSubmit} />
         <div className="admin-edit-content flex">
-          <div className="admin-edit-content-richtext" id='admin-edit-richtext' ref={this.richText}> </div>
+          <div className="admin-edit-content-richtext" id='admin-edit-richtext' > </div>
         </div>
       </div>
     )

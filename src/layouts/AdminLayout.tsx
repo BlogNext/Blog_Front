@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from '../component/header';
 import { getCategoryList } from './service';
 // import {getInfo} from '../api/api'
 import "./index.less";
@@ -15,6 +14,7 @@ class AdminLayout extends Component <IProps, IState> {
   componentDidMount = () => {
     // BG
     // this._initCategory()
+    
   }
 
   // get category lists => array
