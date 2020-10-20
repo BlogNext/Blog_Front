@@ -418,6 +418,14 @@ body,
 }
 
 @media (min-width:1200px) {
+  .ant-modal-root {
+    .ant-modal-mask {
+      z-index: 2222;
+    }
+    .ant-modal-wrap {
+      z-index: 9999;
+    }
+  }
   .layout {
     margin: 0 auto;
     width: 1170px;
@@ -522,5 +530,6 @@ body,
   #tag_toc.fixed #toc {
     width: 697px
   }
+  
 }
 
