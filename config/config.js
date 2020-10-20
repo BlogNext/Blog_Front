@@ -77,13 +77,16 @@ const config = {
       secure: false,
     },
     '/common': {
-      target: 'http://laughingzhu.com:18083/common',
+      target: 'http://laughingzhu.com:8083/common',
       changeOrigin: true,
       pathRewrite: {
         '^/common': '',
       },
       secure: false,
     },
+  },
+  theme: {
+    "primary-color": "#25b864",
   },
   // extraPostCSSPlugins: [
   //   pxToViewPort({
