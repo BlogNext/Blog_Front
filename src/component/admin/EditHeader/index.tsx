@@ -10,37 +10,21 @@ import { Toast } from 'antd-mobile';
 
 function EditHeader (props: any) {
   const [ showTitle, setShowTitle ] = useState(false)
-  const [ title, setTitle ] = useState('无标题')
-  const [ abstract, setAbstract ] = useState('')
-  const [ visible, setVisible ] = useState(false)
-  const [ tag, setTag ] = useState({})
   const [ showTagSelect, setShowTagSelect ] = useState(false)
-  const [fileList, setFileList] = useState([]);
+  const [ visible, setVisible ] = useState(false)
+
   const tagList = JSON.parse(localStorage.getItem('blog_tags'))
 
   useEffect(() => {
     console.log('init children')
-    _initInfo()
+    // _initInfo()
   }, [props.title, props.abstract, props.tag, props.author, props.bg_info])
 
-
-  /**
-   * @desc 初始化 header的 显示内容
-   */
-  const _initInfo = () => {
-    const { title, abstract, tag, bg_info } = props
-    console.log(bg_info)
-    setTitle(title)
-    setAbstract(abstract)
-    setTag(tag)
-    setFileList(bg_info)
-  }
 
   const onSelectChange = (e: any) => {
     const res = tagList.find((item: any) => {
       return item.id === e
     })
-    console.log(res)
     props.change('tag', res)
   }
 
@@ -56,12 +40,7 @@ function EditHeader (props: any) {
     setVisible(status)
   }
 
-  
 
-  const onChange = ({ fileList: newFileList }) => {
-    console.log(newFileList)
-    setFileList(newFileList);
-  };
 
   const onPreview = async file => {
     let src = file.url;
@@ -100,28 +79,26 @@ function EditHeader (props: any) {
     }
   }
 
-console.log(1111,props)
   // info 点击显示内容 （摘要，背景图）
   const popoverContent = (
     <div className='admin-component-editHeader-left-popContent'>
       <div className="admin-component-editHeader-left-popContent-summary">
         <p>摘要</p>
-        <Input.TextArea onChange={(e: any) => props.change('abstract', e.target.value)} value={abstract} placeholder='请输入文章摘要' />
+        <Input.TextArea onChange={(e: any) => props.change('abstract', e.target.value)} value={props.abstract} placeholder='请输入文章摘要' />
       </div>
       <div className="admin-component-editHeader-left-popContent-pic">
         <p>封面</p>
-        <ImgCrop rotate>
+        {/* <ImgCrop rotate> */}
           <Upload
-            // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             listType="picture-card"
-            fileList={fileList}
+            fileList={props.bg_info}
             customRequest={(e) => updatePicFile(e)}
-            onChange={onChange}
+            // onChange={onChange}
             onPreview={onPreview}
           >
-            {fileList.length < 1 && '+ Upload'}
+            {props.bg_info.length < 1 && '+ Upload'}
           </Upload>
-        </ImgCrop>
+        {/* </ImgCrop> */}
       </div>
 
       <Input disabled className="admin-component-editHeader-left-popContent-author" onChange={(e: any) => props.change('author', e.target.value)} value={props.author} placeholder="请输入作者" />
@@ -141,11 +118,12 @@ console.log(1111,props)
       )
     })
     return (
-      <Select onChange={(e) => onSelectChange(e)} onBlur={(e) => tagStatusChange(e, false)} value={tag.id ? tag.id : null} style={{ width: 120 }} bordered={false}>
+      <Select onChange={(e) => onSelectChange(e)} onBlur={(e) => tagStatusChange(e, false)} value={props.tag.id ? props.tag.id : null} style={{ width: 120 }} bordered={false}>
         { tagContent }
       </Select>
     )
   }
+
 
   return (
     <div className="admin-component-editHeader flex">
@@ -155,14 +133,14 @@ console.log(1111,props)
         { showTagSelect ? (
           tagSelectContent()
         ) : (
-          <div onClick={tagStatusChange} className="admin-component-editHeader-left-tag">{tag.title ? tag.title : '请选择标签'}</div>
+          <div onClick={tagStatusChange} className="admin-component-editHeader-left-tag">{props.tag.title ? props.tag.title : '请选择标签'}</div>
         )} 
         /
         <div className="admin-component-editHeader-left-title" ></div>
         { showTitle ? (
-          <Input onBlur={(e) => titleStatusChange(e, false)} onChange={(e: any) => props.change('title', e.target.value)} value={title} placeholder="请输入文章标题" />
+          <Input type='text' onBlur={(e) => titleStatusChange(e, false)} onChange={(e: any) => props.change('title', e.target.value)} value={props.title} placeholder="请输入文章标题" />
         ) : (
-          <div className="admin-component-editHeader-left-title" onClick={titleStatusChange}>{ title }</div>
+          <div className="admin-component-editHeader-left-title" onClick={titleStatusChange}>{ props.title }</div>
         )}
         
         <Popover visible={visible} content={popoverContent} title={popoverTitle} trigger="click">

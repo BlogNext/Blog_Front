@@ -7,23 +7,42 @@ interface IProps {
   children: any,
   location: any
 }
-interface IState {}
+interface IState {
+  cateGoryConf: any,
+  tagList: any
+}
 class AdminLayout extends Component <IProps, IState> {
 
-
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      cateGoryConf: {
+        page: 1,
+        per_page: 10
+      },
+      tagList: []
+    }
+  }
   componentDidMount = () => {
     // BG
-    // this._initCategory()
+    this._initCategory()
     
   }
+  
 
   // get category lists => array
-  // _initCategory = async () => {
-  //   const res = await getInfo()
-  //   if(res.status === 200) {
-  //     console.log(res)
-  //   }
-  // }
+  _initCategory = async () => {
+    const res = await getCategoryList({...this.state.cateGoryConf})
+    if(res.code === 0) {
+      
+      res.data.list.length > 0 && localStorage.setItem('blog_tags', JSON.stringify(res.data.list))
+      setTimeout(() => {
+        this.setState({
+          tagList: res.data.list
+        })
+      }, 0);
+    }
+  }
 
 
   public render = () => {
@@ -34,10 +53,12 @@ class AdminLayout extends Component <IProps, IState> {
     if(location.query.oauthCode) {
       localStorage.setItem('blog_token', location.query.oauthCode)
     }
+
+
     return (
 
       <div className="layout-admin" >
-        {children}
+        {this.state.tagList.length > 0 && children}
       </div>
     );
 

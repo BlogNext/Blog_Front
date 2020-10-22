@@ -110,11 +110,11 @@ class Edit extends PureComponent<IProps, IStete> {
 
     // _init richtext
     this.richText = new Quill('#admin-edit-richtext', options)
+    this.richText.focus()
     this.richText.on('editor-change', (eventName, ...args) => {
-      this.getRichContent()
-      console.log(eventName)
       if (eventName === 'text-change') {
         // args[0] will be delta
+        this.getRichContent()
       } else if (eventName === 'selection-change') {
         // args[0] will be old range
       }
@@ -178,6 +178,7 @@ class Edit extends PureComponent<IProps, IStete> {
    * @param value 改变对应的 value
    */
   valueChange = (type: string, value: any) => {
+
     console.log(type, value)
     switch (type) {
       case 'title':
@@ -214,20 +215,20 @@ class Edit extends PureComponent<IProps, IStete> {
   getRichContent = () => {
     
     this.setState({
-      length: this.richText.getLength()
+      length: this.richText.getLength(),
     })
-    console.log(this.richText.container.innerHTML)
   }
 
   /** 
    * @desc 发布博客
    */
   onSubmit = () => {
-    const { title, abstract, tag, content, bg_info, author, } = this.state
+    const { title, abstract, tag, content, bg_info, author, length } = this.state
     const reqData = {
       title,
       abstract,
-      content,
+      content: this.richText.container.innerHTML,
+      length,
       blog_tupe_id: tag.id,
       bg_info, author,
     }
