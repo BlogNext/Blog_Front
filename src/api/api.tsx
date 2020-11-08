@@ -32,3 +32,10 @@ export const getCategoryList = () => {
     method: 'GET'
   })
 }
+
+// 获取文章列表
+export const getList = () => {
+  return request('/front/blog/get_list', {
+    method: 'GET'
+  })
+}

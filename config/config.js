@@ -3,6 +3,7 @@ const config = {
   treeShaking: true,
   routes: [
     
+
     {
       path: '/admin',
       component: '../layouts/AdminLayout',
@@ -23,9 +24,20 @@ const config = {
       ]
     },
     {
+      path: '/detail',
+      component: '../layouts/DetailLayout',
+      routes: [
+        {
+          path: '/detail',
+          component: './detail',
+        },
+      ]
+    },
+    {
       path: '/',
       component: '../layouts/BasicLayout',
       routes: [
+        
         {
           path: '/',
           component: './index',
@@ -35,6 +47,7 @@ const config = {
           redirect: '/',
           component: './index',
         },
+        
       ],
       
     },
@@ -81,6 +94,14 @@ const config = {
       changeOrigin: true,
       pathRewrite: {
         '^/common': '',
+      },
+      secure: false,
+    },
+    '/front': {
+      target: 'http://laughingzhu.com:18083/front',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/front': '',
       },
       secure: false,
     },

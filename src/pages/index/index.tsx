@@ -22,7 +22,7 @@ class Index extends Component<IndexProps, IndexState> {
       this.setState({
         listShow: false
       })
-    }, 3000);
+    }, 0);
   }
 
 

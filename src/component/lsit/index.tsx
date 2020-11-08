@@ -1,39 +1,62 @@
 import React, { useEffect, useState } from 'react'
 import { Badge, Pagination } from 'antd'
 import { UserOutlined, FieldTimeOutlined, MessageOutlined } from '@ant-design/icons'
-
+import * as dayjs from 'dayjs'
+import { getList } from '../../api/api'
+var localizedFormat = require('dayjs/plugin/localizedFormat')
+import router from 'umi/router'
 import './style.less'
 
 function List (props: any) {
+  dayjs.extend(localizedFormat)
 
   const [ list, setList ] = useState([])
 
   useEffect(() => {
-    console.log('render_list')
-    setList([1,2,3,4,5,6,7,8,9])
+    async function getArticleList() {
+      const res = await getList()
+      if(res.code === 0) {
+        setList(res.data.list)
+      } else {
+        console.log('获取失败哦！')
+      }
+    }
+    getArticleList()
   }, [''])
+
+
+  const detailView = (data: any) => {
+    window.localStorage.setItem('detail', JSON.stringify(data))
+    router.push({
+      pathname: `/detail`,
+      query: {
+        id: data.id
+      }
+    })
+  }
+
+
 
 
   return (
     <div className="component-list flex">
-      { list.length > 0 && list.map((item: any[], index :number) => {
+      { list.length > 0 && list.map((item: any, index :number) => {
         return (
-          <div className="component-list_item flex" key={`component-list_item-${index}`}>
-            <div className="component-list_item--img" />
+          <div onClick={() => detailView(item)} className="component-list_item flex" key={`component-list_item-${index}`}>
+            <div className="component-list_item--img" style={{ backgroundImage: `url(${item.cover_plan_info.full_url})`}} />
 
             <div className="component-list_item--info flex">
-              <div className="component-list_item--info_title">看得sfsdfsdfsd开了分公sdfsdfsdfsdffdss司抵抗力国际快递升龙国际</div>
-              <div className="component-list_item--info_desc">看得sfsdfsdfsd开了分公sdfs
-                dfsdfsdffdss司抵抗力国际快递升龙国际</div>
+              <div className="component-list_item--info_title"> {item.title} </div>
+              <div className="component-list_item--info_desc"> {item.abstract} </div>
               <div className="component-list_item--info_line" />
               <div className="component-list_item--info_utils flex">
                 <div className="component-list_item--info_utils--item">
                   <UserOutlined className='component-list_item--info_utils--icon' />
-                  <span>LaughingZhu</span>
+                  <span> {item.user_info.nickname} </span>
                 </div>
                 <div className="component-list_item--info_utils--item">
                   <FieldTimeOutlined className='component-list_item--info_utils--icon' />
-                  <span>February 9, 2020 </span>
+                  <span>{`${dayjs.unix(item.created_at).locale('en').format('LL')}`}  </span>
                 </div>
                 <div className="component-list_item--info_utils--item">
                   <Badge dot>
