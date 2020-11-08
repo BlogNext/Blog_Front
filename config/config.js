@@ -81,14 +81,6 @@ const config = {
     ],
   ],
   proxy: {
-    '/blackend': {
-      target: 'http://laughingzhu.com:18083/blackend',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/blackend': '',
-      },
-      secure: false,
-    },
     '/common': {
       target: 'http://laughingzhu.com:8083/common',
       changeOrigin: true,

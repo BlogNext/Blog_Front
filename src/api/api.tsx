@@ -27,8 +27,10 @@ export const getCode = async (data: any) => {
     data
   })
 }
+
+// 获取分类列表
 export const getCategoryList = () => {
-  return request('/blackend/blog_type/get_list', {
+  return request('/front/blog_type/get_list', {
     method: 'GET'
   })
 }
@@ -37,5 +39,13 @@ export const getCategoryList = () => {
 export const getList = () => {
   return request('/front/blog/get_list', {
     method: 'GET'
+  })
+}
+
+// 关键字搜索文章
+export const getSearchList = (params: any) => {
+  return request('/front/blog/search_blog', {
+    method: 'GET',
+    params
   })
 }

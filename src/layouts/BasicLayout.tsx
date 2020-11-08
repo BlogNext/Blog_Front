@@ -26,7 +26,7 @@ class BasicLayout extends Component <IProps, IState> {
   }
   componentDidMount = () => {
     // BG
-    this._initCategory()
+    // this._initCategory()
   }
 
   // get category lists => array
