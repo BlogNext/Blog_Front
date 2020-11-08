@@ -89,14 +89,14 @@ const config = {
       },
       secure: false,
     },
-    '/front': {
-      target: 'http://laughingzhu.com:18083/front',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/front': '',
-      },
-      secure: false,
-    },
+    // '/front': {
+    //   target: 'http://blog.laughingzhu.com/front',
+    //   changeOrigin: true,
+    //   pathRewrite: {
+    //     '^/front': '',
+    //   },
+    //   secure: false,
+    // },
   },
   theme: {
     "primary-color": "#25b864",

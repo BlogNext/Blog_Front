@@ -51,7 +51,7 @@ request.interceptors.request.use((url, options) => {
   const access_token = localStorage.getItem('blog_token')
 
   options.headers = {
-    'oauthCode': access_token
+    // 'oauthCode': access_token
   }
   return (
     {
