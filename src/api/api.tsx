@@ -42,6 +42,14 @@ export const getList = () => {
   })
 }
 
+// 获取文章列表
+export const getDetail = (params: any) => {
+  return request('https://blog.laughingzhu.com/front/blog/detail', {
+    method: 'GET',
+    params
+  })
+}
+
 // 关键字搜索文章
 export const getSearchList = (params: any) => {
   return request('/front/blog/search_blog', {

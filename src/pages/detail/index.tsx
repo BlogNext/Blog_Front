@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { UserOutlined, FieldTimeOutlined, MessageOutlined, EyeOutlined, BarChartOutlined } from '@ant-design/icons'
 import marked from 'marked'
+import { getDetail } from '../../api/api'
 import './style.less'
 import { Badge } from 'antd'
 import * as dayjs from 'dayjs'
 import hljs from 'highlight.js';
 import 'highlight.js/styles/darcula.css'
 hljs.initHighlightingOnLoad()
-var localizedFormat = require('dayjs/plugin/localizedFormat')
+let localizedFormat = require('dayjs/plugin/localizedFormat')
 
 
 marked.setOptions({ // marked 设置
@@ -24,52 +25,53 @@ marked.setOptions({ // marked 设置
     return beforNumber(hljs.highlightAuto(code).value)
   }
 })
-  /**
-   * 为代码块显示添加行号
-   * @param {String} code MD的代码内容
-   */
-  function beforNumber(code) {
-    if (!code.trim()) {
-      return code;
-    }
-    const list = code.split('\n');
-    const spanList = ['<span aria-hidden="true" line-row>'];
-    list.forEach(() => {
-      spanList.push('<span></span>');
-    });
-    spanList.push('</span>');
-    list.push(spanList.join(''));
-    return list.join('\n');
+/**
+ * 为代码块显示添加行号
+ * @param {String} code MD的代码内容
+ */
+function beforNumber(code) {
+  if (!code.trim()) {
+    return code;
   }
+  const list = code.split('\n');
+  const spanList = ['<span aria-hidden="true" line-row>'];
+  list.forEach(() => {
+    spanList.push('<span></span>');
+  });
+  spanList.push('</span>');
+  list.push(spanList.join(''));
+  return list.join('\n');
+}
+
 
 export default function Detail (props: any) {
   dayjs.extend(localizedFormat)
-
   const [ detail, setDetail ] = useState({})
   useEffect(() => {
-    console.log('detail')
+    async function detail() {
+      let res = await getDetail({id: props.location.query.id})
+      if(res.code === 0) {
+        setDetail(res.data)
+      }
+    }
+    detail()
   }, [props.data])
 
 
-  const data = JSON.parse(window.localStorage.getItem('detail'))
-  // format_img = data.content.replace(/img/g, 'img referrerPolicy="no-referrer"')
-  const content = marked(data.content).replace(/img/g, 'img referrerPolicy="no-referrer"')
-  console.log(data)
-
   return (
     <div className="detail">
-      {data.id && (
+      {detail.id && (
         <div className="detail-wrapper">
           <div className="detail-wrapper-header flex">
-            <h1 className="detail-wrapper-header-title"> {data.title} </h1>
+            <h1 className="detail-wrapper-header-title"> {detail.title} </h1>
             <div className="detail-wrapper-header-info flex">
               <div className="detail-wrapper-header-info--item">
                 <UserOutlined className='detail-wrapper-header-info--icon' />
-                <span> {data.user_info.nickname} </span>
+                <span> {detail.user_info.nickname} </span>
               </div>
               <div className="detail-wrapper-header-info--item">
                 <FieldTimeOutlined className='detail-wrapper-header-info--icon' />
-                <span>{dayjs.unix(data.created_at).locale('en').format('LL')}  </span>
+                <span>{dayjs.unix(detail.created_at).locale('en').format('LL')}  </span>
               </div>
               <div className="detail-wrapper-header-info--item">
 
@@ -90,7 +92,7 @@ export default function Detail (props: any) {
             </div>
           </div>
           <div className="detail-wrapper-content" >
-            <div className="detail-wrapper-content-main" dangerouslySetInnerHTML = {{ __html: content }}></div>
+            <div className="detail-wrapper-content-main" dangerouslySetInnerHTML = {{ __html: marked(detail.content).replace(/img/g, 'img referrerPolicy="no-referrer"') }}></div>
           </div>
         </div>
       )}
