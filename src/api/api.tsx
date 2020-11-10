@@ -52,7 +52,7 @@ export const getDetail = (params: any) => {
 
 // 关键字搜索文章
 export const getSearchList = (params: any) => {
-  return request('/front/blog/search_blog', {
+  return request('https://blog.laughingzhu.com/front/blog/search_blog', {
     method: 'GET',
     params
   })
