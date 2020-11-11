@@ -6,23 +6,25 @@ import { getList } from '../../api/api'
 var localizedFormat = require('dayjs/plugin/localizedFormat')
 import router from 'umi/router'
 import './style.less'
+import { configConsumerProps } from 'antd/lib/config-provider'
 
 function List (props: any) {
   dayjs.extend(localizedFormat)
-
+  const [ pageInfo, setPageInfo ] = useState({ page: 1, total: 1, pageSize: 10})
   const [ list, setList ] = useState([])
 
   useEffect(() => {
     async function getArticleList() {
-      const res = await getList()
+      const res = await getList({page: pageInfo.page, per_page: pageInfo.pageSize})
       if(res.code === 0) {
         setList(res.data.list)
+        setPageInfo({...pageInfo, total: res.data.count})
       } else {
         console.log('获取失败哦！')
       }
     }
     getArticleList()
-  }, [''])
+  }, [pageInfo.page])
 
 
   const detailView = (data: any) => {
@@ -33,6 +35,10 @@ function List (props: any) {
         id: data.id
       }
     })
+  }
+
+  const pageChange = (e: any) => {
+    setPageInfo({...pageInfo, page: e})
   }
 
 
@@ -69,7 +75,7 @@ function List (props: any) {
           </div>
         )
       })}
-      <Pagination onChange={() => console.log(222)} className='component-list_pagination' showLessItems defaultCurrent={1} current={2} total={49} />
+      <Pagination onChange={(e) => pageChange(e)} className='component-list_pagination' showLessItems  current={pageInfo.page} total={pageInfo.total} />
     </div>
   )
 }

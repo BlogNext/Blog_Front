@@ -36,9 +36,10 @@ export const getCategoryList = () => {
 }
 
 // 获取文章列表
-export const getList = () => {
+export const getList = (params: any) => {
   return request('https://blog.laughingzhu.com/front/blog/get_list', {
-    method: 'GET'
+    method: 'GET',
+    params
   })
 }
 
