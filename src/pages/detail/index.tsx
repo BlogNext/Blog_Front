@@ -76,7 +76,7 @@ export default function Detail (props: any) {
               <div className="detail-wrapper-header-info--item">
 
                 <EyeOutlined className="detail-wrapper-header-info--icon" />
-                <span>0 views</span>
+                <span>{detail.browse_total} views</span>
               </div>
               <div className="detail-wrapper-header-info--item">
 
