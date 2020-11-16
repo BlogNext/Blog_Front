@@ -6,7 +6,6 @@ import { getList } from '../../api/api'
 var localizedFormat = require('dayjs/plugin/localizedFormat')
 import router from 'umi/router'
 import './style.less'
-import { configConsumerProps } from 'antd/lib/config-provider'
 
 function List (props: any) {
   dayjs.extend(localizedFormat)
