@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getCategoryType } from '../../api/api'
 import { createFromIconfontCN } from '@ant-design/icons';
 import { Divider, Tooltip } from 'antd'
 import './style.less'
@@ -81,17 +82,58 @@ const toolsData = [
 
 export default function Aside (props: any) {
   // 遍历菜单
+  const [ typeList, setTypeList ] = useState([])
+  useEffect(() => {
+    async function getType () {
+      let res = await getCategoryType()
+      console.log(res)
+      if(res.code === 0) {
+        let pre = [
+          {
+            label: 'Navigation',
+            path:'/Navigation',
+            children: [
+              {
+                icon: 'icon-git-branch',
+                label: 'Repository',
+                path:'/Repository',
+                children: []
+              },
+              {
+                icon: 'icon-books',
+                label: 'Books',
+                path:'/Books',
+                children: []
+              },
+              {
+                icon: 'icon-time',
+                path:'/TimeMachine',
+                label: 'TimeMachine',
+                children: []
+              }
+            ]
+          },
+          {
+            label: 'Components',
+            children: res.data.list
+          }
+        ]
+        setTypeList(pre)
+      }
+    }
+    getType()
+  }, [''])
   const menuView = () => {
-    return menuData.length > 0 && menuData.map((item: any, index: number) => {
+    return typeList.length > 0 && typeList.map((item: any, index: number) => {
       return (
         <div className="component-aside-container_menu_item" key={`component-aside-container_menu_item-${index}`}>
-          <div className="component-aside-container_menu_item--title">{item.label}</div>
+          <div className="component-aside-container_menu_item--title">{item.label ? item.label: item.yuque_name}</div>
           {item.children.length > 0 && (
             item.children.map((children: any, cIndex: number) => {
               return (
                 <div className="component-aside-container_menu_item--children flex" key={`component-aside-container_menu_item--children${cIndex}`}>
                   <MyIcon className="component-aside-container_menu_item--children--icon" type={children.icon} />
-                  <div className="component-aside-container_menu_item--children--label">{ children.label }</div>
+                  <div className="component-aside-container_menu_item--children--label">{ children.label ? children.label: children.yuque_name}</div>
                 </div>
               )
             })

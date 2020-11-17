@@ -58,3 +58,10 @@ export const getSearchList = (params: any) => {
     params
   })
 }
+
+// 获取文章分类列表
+export const getCategoryType = () => {
+  return request('https://blog.laughingzhu.com/front/blog_type/get_list', {
+    method: 'GET'
+  })
+}
