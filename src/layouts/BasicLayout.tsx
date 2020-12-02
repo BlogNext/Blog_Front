@@ -52,7 +52,7 @@ class BasicLayout extends Component <IProps, IState> {
         <div className="layout-header">
           <div className="layout-header-container"><Header /></div>
         </div>
-        <div className="layout-container">
+        <div className="layout-container flex">
           <div className="layout-container-aside"><Aside /></div>
           <div className="layout-container-content flex">
             <div className="layout-container-content-main">

@@ -132,7 +132,7 @@ export default function Aside (props: any) {
             item.children.map((children: any, cIndex: number) => {
               return (
                 <div className="component-aside-container_menu_item--children flex" key={`component-aside-container_menu_item--children${cIndex}`}>
-                  <MyIcon className="component-aside-container_menu_item--children--icon" type={children.icon} />
+                  {children.icon && <MyIcon className="component-aside-container_menu_item--children--icon" type={children.icon} />}
                   <div className="component-aside-container_menu_item--children--label">{ children.label ? children.label: children.yuque_name}</div>
                 </div>
               )
@@ -176,7 +176,6 @@ export default function Aside (props: any) {
           { toolsView() }
         </div>
       </div>
-     
     </div>
   )
 }
