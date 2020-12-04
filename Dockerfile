@@ -7,8 +7,6 @@ RUN yarn global add umi
 
 RUN umi -v
 
-RUN yarn global add umi-plugin-react --dev
-
 
 WORKDIR /app
 
