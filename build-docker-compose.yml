@@ -17,8 +17,7 @@ services:
       - /bin/sh
       - -c
       - |
-        npm i
-        npm run build
+        umi build
     #设置环境变量
     networks:
       - blog_next
