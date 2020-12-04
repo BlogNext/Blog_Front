@@ -28,13 +28,6 @@ export const getCode = async (data: any) => {
   })
 }
 
-// 获取分类列表
-export const getCategoryList = () => {
-  return request('/front/blog_type/get_list', {
-    method: 'GET'
-  })
-}
-
 // 获取文章列表
 export const getList = (params: any) => {
   return request('https://blog.laughingzhu.com/front/blog/get_list', {

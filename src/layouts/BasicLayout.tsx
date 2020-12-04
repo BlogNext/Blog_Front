@@ -25,17 +25,8 @@ class BasicLayout extends Component <IProps, IState> {
     }
   }
   componentDidMount = () => {
-    // BG
-    // this._initCategory()
   }
 
-  // get category lists => array
-  _initCategory = async () => {
-    const res = await getCategoryList({...this.state.cateGoryConf})
-    if(res.code === 0) {
-      res.data.list.length > 0 && localStorage.setItem('blog_tags', JSON.stringify(res.data.list))
-    }
-  }
 
 
   public render = () => {
