@@ -1,11 +1,6 @@
 FROM node:14.2.0-stretch
 
-RUN yarn -v
-
-RUN echo yarn -v
-
-RUN npm i yarn  -g
-
+#镜像自带了yarn
 RUN yarn -v
 
 RUN yarn global add umi
