@@ -4,7 +4,7 @@ import { createFromIconfontCN } from '@ant-design/icons';
 import { Divider, Tooltip } from 'antd'
 import './style.less'
 import { connect } from 'dva';
-
+import router from 'umi/router'
 
 // 本地菜单config
 
@@ -126,10 +126,20 @@ function Aside (props: any) {
 
 
   const typeHandle = (id: number) => {
-    props.dispatch({
-      type: 'menu/setType',
-      payload: {id}
-    })
+    const hashname = window.location.hash
+    if(hashname === '#/') {
+      // 在首页，更新分类信息
+      props.dispatch({
+        type: 'menu/setType',
+        payload: {id}
+      })
+    } else {
+      // 不在首页，返回首页
+      router.push({
+        pathname: '/',
+      })
+    }
+    
   }
   const menuView = () => {
     return typeList.length > 0 && typeList.map((item: any, index: number) => {

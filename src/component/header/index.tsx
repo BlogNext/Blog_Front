@@ -13,7 +13,6 @@ function Header (props: any) {
   const [value, setValue] = useState(undefined)
   const [fetching, setFetching] = useState(false)
   useEffect(() => {
-    
   }, [''])
 
   const getSearch = async(value) => {
@@ -39,10 +38,20 @@ function Header (props: any) {
   }
 
   const titleHandle = () => {
-    props.dispatch({
-      type: 'menu/cleanType',
-      payload: {}
-    })
+
+    const hashname = window.location.hash
+    if(hashname === '#/') {
+      // 在首页，清除分类信息
+      props.dispatch({
+        type: 'menu/cleanType',
+        payload: {}
+      })
+    } else {
+      // 不在首页，返回首页
+      router.push({
+        pathname: '/',
+      })
+    }
   }
 
   return(
