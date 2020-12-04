@@ -3,6 +3,7 @@ import { getCategoryType } from '../../api/api'
 import { createFromIconfontCN } from '@ant-design/icons';
 import { Divider, Tooltip } from 'antd'
 import './style.less'
+import { connect } from 'dva';
 
 
 // 本地菜单config
@@ -80,13 +81,12 @@ const toolsData = [
   },
 ]
 
-export default function Aside (props: any) {
+function Aside (props: any) {
   // 遍历菜单
   const [ typeList, setTypeList ] = useState([])
   useEffect(() => {
     async function getType () {
       let res = await getCategoryType()
-      console.log(res)
       if(res.code === 0) {
         let pre = [
           {
@@ -123,6 +123,14 @@ export default function Aside (props: any) {
     }
     getType()
   }, [''])
+
+
+  const typeHandle = (id: number) => {
+    props.dispatch({
+      type: 'menu/setType',
+      payload: {id}
+    })
+  }
   const menuView = () => {
     return typeList.length > 0 && typeList.map((item: any, index: number) => {
       return (
@@ -131,7 +139,7 @@ export default function Aside (props: any) {
           {item.children.length > 0 && (
             item.children.map((children: any, cIndex: number) => {
               return (
-                <div className="component-aside-container_menu_item--children flex" key={`component-aside-container_menu_item--children${cIndex}`}>
+                <div onClick={() => typeHandle(children.id)} className="component-aside-container_menu_item--children flex" key={`component-aside-container_menu_item--children${cIndex}`}>
                   {children.icon && <MyIcon className="component-aside-container_menu_item--children--icon" type={children.icon} />}
                   <div className="component-aside-container_menu_item--children--label">{ children.label ? children.label: children.yuque_name}</div>
                 </div>
@@ -179,3 +187,16 @@ export default function Aside (props: any) {
     </div>
   )
 }
+
+function mapStateToProps(state) {
+  const { menuList, page, pageSize, total} = state.menu;
+  return {
+    loading: state.loading.models.menu,
+    menuList,
+    page,
+    pageSize,
+    total
+  };
+}
+
+export default connect(mapStateToProps)(Aside);

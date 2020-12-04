@@ -2,28 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { Badge, Pagination } from 'antd'
 import { UserOutlined, FieldTimeOutlined, MessageOutlined } from '@ant-design/icons'
 import * as dayjs from 'dayjs'
-import { getList } from '../../api/api'
+import { connect } from 'dva';
 var localizedFormat = require('dayjs/plugin/localizedFormat')
 import router from 'umi/router'
 import './style.less'
 
 function List (props: any) {
   dayjs.extend(localizedFormat)
-  const [ pageInfo, setPageInfo ] = useState({ page: 1, total: 1, pageSize: 10})
-  const [ list, setList ] = useState([])
 
   useEffect(() => {
-    async function getArticleList() {
-      const res = await getList({page: pageInfo.page, per_page: pageInfo.pageSize})
-      if(res.code === 0) {
-        setList(res.data.list)
-        setPageInfo({...pageInfo, total: res.data.count})
-      } else {
-        console.log('获取失败哦！')
-      }
-    }
-    getArticleList()
-  }, [pageInfo.page])
+    props.dispatch({
+      type: 'menu/getLists',
+      payload: {}
+    })
+  }, [props.page, props.type_id])
 
 
   const detailView = (data: any) => {
@@ -37,7 +29,10 @@ function List (props: any) {
   }
 
   const pageChange = (e: any) => {
-    setPageInfo({...pageInfo, page: e})
+    props.dispatch({
+      type: 'menu/getPage',
+      payload: { page: e}
+    })
   }
 
 
@@ -45,7 +40,7 @@ function List (props: any) {
 
   return (
     <div className="component-list flex">
-      { list.length > 0 && list.map((item: any, index :number) => {
+      { props.menuList.length > 0 && props.menuList.map((item: any, index :number) => {
         return (
           <div onClick={() => detailView(item)} className="component-list_item flex" key={`component-list_item-${index}`}>
             <div className="component-list_item--img" style={{ backgroundImage: `url(${item.cover_plan_info.full_url})`}} />
@@ -74,9 +69,22 @@ function List (props: any) {
           </div>
         )
       })}
-      <Pagination onChange={(e) => pageChange(e)} className='component-list_pagination' showLessItems  current={pageInfo.page} total={pageInfo.total} />
+      {props.menuList.length > 0 && <Pagination onChange={(e) => pageChange(e)} className='component-list_pagination' showLessItems  current={props.page} total={props.total} />}
+      
     </div>
   )
 }
 
-export default List
+function mapStateToProps(state) {
+  const { menuList, page, pageSize, total, type_id} = state.menu;
+  return {
+    loading: state.loading.models.menu,
+    menuList,
+    page,
+    pageSize,
+    total,
+    type_id
+  };
+}
+
+export default connect(mapStateToProps)(List);

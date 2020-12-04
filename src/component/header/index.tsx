@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import debounce from 'lodash/debounce';
-import { HomeOutlined, SettingOutlined, MessageOutlined, BulbOutlined, KeyOutlined } from '@ant-design/icons';
+import { SettingOutlined, MessageOutlined, BulbOutlined, KeyOutlined } from '@ant-design/icons';
 import { getSearchList } from '../../api/api'
-import { Input, Select, Spin } from 'antd'
+import { Select, Spin } from 'antd'
 import './style.less'
 import router from 'umi/router';
-// import { TweenMax, Split } from 'gsap';
+import { connect } from 'dva';
 
-const { Search } = Input;
 
-export default function Header (props: any) {
+function Header (props: any) {
   const [data, setData] = useState([])
   const [value, setValue] = useState(undefined)
   const [fetching, setFetching] = useState(false)
@@ -39,11 +38,18 @@ export default function Header (props: any) {
     })
   }
 
+  const titleHandle = () => {
+    props.dispatch({
+      type: 'menu/cleanType',
+      payload: {}
+    })
+  }
+
   return(
     <div className="component-header flex">
       <div className="component-header_title flex">
         {/* <HomeOutlined className='component-header_title_icon' /> */}
-        <span>LaughingZhu's Blog</span>
+        <span onClick={titleHandle}>LaughingZhu's Blog</span>
       </div>
 
       <div className="component-header_container flex">
@@ -56,6 +62,7 @@ export default function Header (props: any) {
         <Select
           // mode='''
           showSearch
+          showArrow={data.length > 0 ? true : false}
           className='component-header_container_search'
           labelInValue
           value={value}
@@ -89,3 +96,16 @@ export default function Header (props: any) {
     </div>
   )
 }
+
+function mapStateToProps(state) {
+  const { menuList, page, pageSize, total} = state.menu;
+  return {
+    loading: state.loading.models.menu,
+    menuList,
+    page,
+    pageSize,
+    total
+  };
+}
+
+export default connect(mapStateToProps)(Header);
