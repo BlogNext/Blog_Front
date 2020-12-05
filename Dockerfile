@@ -2,7 +2,9 @@ FROM node:14.2.0
 
 RUN npm -v
 
-RUN npm install -g umi
+RUN yarn global add umi
+
+RUN umi -v
 
 WORKDIR /app
 
