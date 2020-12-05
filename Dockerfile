@@ -1,16 +1,8 @@
 FROM node:14.2.0-stretch
 
 RUN npm -v
-#镜像自带了yarn
-RUN yarn -v
 
-RUN yarn global add umi
-
-RUN umi -v
-
-
-RUN yarn global add umi-plugin-react --dev
-
+RUN npm install -g umi
 
 WORKDIR /app
 
