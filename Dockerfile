@@ -1,11 +1,10 @@
-FROM node:10.13
+FROM node:14.2.0-stretch
 
 RUN npm -v
 
-RUN npm i tyarn -g
-
-RUN tyarn -v
-
+#安装umi
+RUN yarn global add umi
+RUN umi -v
 
 WORKDIR /app
 
