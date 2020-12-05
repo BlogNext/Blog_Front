@@ -1,10 +1,11 @@
-FROM node:14.2.0
+FROM node:10.13
 
 RUN npm -v
 
-RUN yarn global add umi
+RUN npm i tyarn -g
 
-RUN umi -v
+RUN tyarn -v
+
 
 WORKDIR /app
 
