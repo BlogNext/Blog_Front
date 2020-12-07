@@ -17,5 +17,4 @@ services:
       - /bin/sh
       - -c
       - |
-        yarn
         npm run build
