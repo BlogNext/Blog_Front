@@ -17,4 +17,5 @@ services:
       - /bin/sh
       - -c
       - |
-        npm run build
+        npm install
+        umi build
