@@ -58,7 +58,7 @@ function Header (props: any) {
     <div className="component-header flex">
       <div className="component-header_title flex">
         {/* <HomeOutlined className='component-header_title_icon' /> */}
-        <span onClick={titleHandle}>LaughingZhu's Blog</span>
+        <span onClick={titleHandle}>LaughingZhu's Blog🦆</span>
       </div>
 
       <div className="component-header_container flex">
