@@ -58,3 +58,11 @@ export const getCategoryType = () => {
     method: 'GET'
   })
 }
+
+// 根据不同维度获取 列表
+export const getBlogBySort = (params: any) => {
+  return request('https://blog.laughingzhu.com/front/blog/get_list_by_sort', {
+    method: 'GET',
+    params
+  })
+}

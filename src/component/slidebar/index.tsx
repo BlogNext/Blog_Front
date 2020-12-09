@@ -1,72 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { FireOutlined, MessageOutlined, GiftOutlined, BellOutlined, FieldTimeOutlined, NodeIndexOutlined } from '@ant-design/icons'
-
+import { getBlogBySort } from '../../api/api'
 import './style.less'
-
+import * as dayjs from 'dayjs'
 const menuData = [
   {
     label : 'Popular artivles',
-    icon: <FireOutlined className='component-slidebar--menu_header-item--icon' />
+    sort_dimension: 'browse_total',
+    string: 'browse_total',
+    icon: <FireOutlined className='component-slidebar--menu_header-item--icon' />,
+    itemIcon: <FireOutlined className='component-slidebar--menu_content--list-item--desc_comment--icon' />
   },
   {
     label : 'Latest comments',
-    icon: <MessageOutlined className='component-slidebar--menu_header-item--icon' />
+    sort_dimension: 'created_at',
+    string: 'browse_total',
+
+    icon: <FieldTimeOutlined className='component-slidebar--menu_header-item--icon' />,
+    itemIcon: <FieldTimeOutlined className='component-slidebar--menu_content--list-item--desc_comment--icon' />
   },
   {
     label : 'Random articles',
-    icon: <GiftOutlined className='component-slidebar--menu_header-item--icon' />
+    string: 'browse_total',
+
+    sort_dimension: '',
+    icon: <GiftOutlined className='component-slidebar--menu_header-item--icon' />,
+    itemIcon: <MessageOutlined className='component-slidebar--menu_content--list-item--desc_comment--icon' />
+
   }
 ]
 
 
-const listData = [1,2,3,4,5]
+function Slidebar (props: any) {
+  const [ current, setCurrent ] = useState(0)
+  const [listData, setListData] = useState([])
+  useEffect(() => {
+    async function getListData() {
+      let res = await getBlogBySort({ sort_dimension: menuData[current].sort_dimension})
+      if(res.code === 0) {
+        // success
+        setListData(res.data.list)
+      }
+    }
+    getListData()
 
-function Menu (props: any) {
-  const [ current, setCurrent ] = useState(1)
+  }, [current])
   const menuChange = (index: number) => {
     if(index === current) return false
 
     setCurrent(index)
     return false;
   }
-
-  const listView = listData.length > 0 && listData.map((item: any, index: number) => {
-    return (
-      <div className="component-slidebar--menu_content--list-item flex" key={`component-slidebar--menu_content--list-item-${index}`}>
-        <img src={require('../../assets/img/avatar.jpg')} alt="" className="component-slidebar--menu_content--list-item--avatar"/>
-        <div className="component-slidebar--menu_content--list-item--desc">
-          <div className="component-slidebar--menu_content--list-item--desc_label">记得快的三个大嫁风尚挂号费的</div>
-          <div className="component-slidebar--menu_content--list-item--desc_comment">
-            <MessageOutlined className='component-slidebar--menu_content--list-item--desc_comment--icon' />
-            {0}
-          </div>
-
-        </div>
-      </div>
-    )
-  })
-  return (
-    <div className="component-slidebar--menu flex">
-      <div className="component-slidebar--menu_header flex">
-        { menuData.map((item: any, index: any) => {
-          return (
-            <div onClick={() => menuChange(index)} className={`component-slidebar--menu_header-item flex ${current === index && 'component-slidebar--menu_header-item--active' }`} key={`component-slidebar--menu_header-item-${item.label}`}>
-              {item.icon}
-              <span className='component-slidebar--menu_header-item--line' />
-            </div>
-          )
-        })}
-      </div>
-      <div className="component-slidebar--menu_content flex">
-        <div className="component-slidebar--menu_content--title">{ menuData[current].label }</div>
-        <div className="component-slidebar--menu_content--list">{listView}</div>
-      </div>
-    </div>
-  )
-}
-
-// blog Info
-function Info (props: any) {
   const infoData = [
     {
       label: 'Posts Num',
@@ -90,6 +74,38 @@ function Info (props: any) {
     }
   ]
 
+  const getItemView = (item: any) => {
+
+    switch (current) {
+      case 0:
+        return item[menuData[current].string]
+        break;
+      case 1:
+        return dayjs.unix(item.cover_plan_info.created_at).locale('en').format('ll')
+        break;
+      case 2:
+    
+        break;
+      default:
+        break;
+    }
+  }
+  const listView = listData.length > 0 && listData.map((item: any, index: number) => {
+    return (
+      <div className="component-slidebar--menu_content--list-item flex" key={`component-slidebar--menu_content--list-item-${index}`}>
+        <img src={require('../../assets/img/avatar.jpg')} alt="" className="component-slidebar--menu_content--list-item--avatar"/>
+        <div className="component-slidebar--menu_content--list-item--desc">
+          <div className="component-slidebar--menu_content--list-item--desc_label"> {item.title} </div>
+          <div className="component-slidebar--menu_content--list-item--desc_comment">
+            {menuData[current].itemIcon}
+            {getItemView(item)}
+          </div>
+
+        </div>
+      </div>
+    )
+  })
+
   const infoView = infoData.length > 0 && infoData.map((item: any, index: number) => {
     return (
       <div className="component-slidebar--info_content-item flex" key={`component-slidebar--info_content-item-${index}`}>
@@ -101,22 +117,32 @@ function Info (props: any) {
       </div>
     )
   })
-
-  return (
-    <div className="component-slidebar--info">
-      <div className="component-slidebar--info_title">Blog Info</div>
-      <div className="component-slidebar--info_content"> {infoView} </div>
-    </div>
-  )
-}
-
-function Slidebar (props: any) {
-  
-
   return(
     <div className="component-slidebar flex">
-      <Menu />
-      <Info />
+      {/* <Menu />
+      <Info /> */}
+
+      <div className="component-slidebar--menu flex">
+        <div className="component-slidebar--menu_header flex">
+          { menuData.map((item: any, index: any) => {
+            return (
+              <div onClick={() => menuChange(index)} className={`component-slidebar--menu_header-item flex ${current === index && 'component-slidebar--menu_header-item--active' }`} key={`component-slidebar--menu_header-item-${item.label}`}>
+                {item.icon}
+                <span className='component-slidebar--menu_header-item--line' />
+              </div>
+            )
+          })}
+        </div>
+        <div className="component-slidebar--menu_content flex">
+          <div className="component-slidebar--menu_content--title">{ menuData[current].label }</div>
+          <div className="component-slidebar--menu_content--list">{listView}</div>
+        </div>
+      </div>
+
+      <div className="component-slidebar--info">
+        <div className="component-slidebar--info_title">Blog Info</div>
+        <div className="component-slidebar--info_content"> {infoView} </div>
+      </div>
     </div>
   )
 }
