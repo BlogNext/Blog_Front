@@ -9,7 +9,6 @@ import './style.less'
 
 function List (props: any) {
   dayjs.extend(localizedFormat)
-
   useEffect(() => {
     props.dispatch({
       type: 'menu/getLists',

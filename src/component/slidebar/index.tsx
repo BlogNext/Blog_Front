@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { FireOutlined, MessageOutlined, GiftOutlined, BellOutlined, FieldTimeOutlined, NodeIndexOutlined } from '@ant-design/icons'
-import { getBlogBySort } from '../../api/api'
+import { getBlogBySort, getBlogInfo } from '../../api/api'
 import './style.less'
 import * as dayjs from 'dayjs'
+import { Toast } from 'antd-mobile';
+import { message } from 'antd';
 const menuData = [
   {
     label : 'Popular artivles',
@@ -30,11 +32,40 @@ const menuData = [
   }
 ]
 
+const infoData = [
+  {
+    label: 'Posts Num',
+    icon: <BellOutlined className="component-slidebar--info_content-item--desc_icon" />,
+    num: 1,
+    string: 'blog_total'
+  },
+  {
+    label: 'Comments Num',
+    icon: <MessageOutlined className="component-slidebar--info_content-item--desc_icon" />,
+    string: ''
+  },
+  {
+    label: 'Operating Days',
+    icon: <FieldTimeOutlined className="component-slidebar--info_content-item--desc_icon" />,
+    num: 1,
+    string: 'diff_time'
+  },
+  {
+    label: 'Last activity',
+    icon: <NodeIndexOutlined className="component-slidebar--info_content-item--desc_icon" />,
+    num: 1,
+    string: 'last_create_at'
+  }
+]
 
 function Slidebar (props: any) {
   const [ current, setCurrent ] = useState(0)
   const [listData, setListData] = useState([])
+  const [blogInfo, setBlogInfo] = useState({})
+
+  // 初始化sortListData，跟随current 变化
   useEffect(() => {
+    
     async function getListData() {
       let res = await getBlogBySort({ sort_dimension: menuData[current].sort_dimension})
       if(res.code === 0) {
@@ -45,34 +76,31 @@ function Slidebar (props: any) {
     getListData()
 
   }, [current])
+
+  // 初始化 blog info data，初始化请求一次
+  useEffect(() => {
+    async function getInfo () {
+      let res = await getBlogInfo()
+      if(res.code === 0) {
+        // 获取成功
+        console.log(res.data.list, 'blog list')
+        setBlogInfo(res.data.list)
+      } else {
+        message.error(res.msg, 2)
+      }
+    }
+
+    getInfo()
+  }, [''])
+
+
   const menuChange = (index: number) => {
     if(index === current) return false
 
     setCurrent(index)
     return false;
   }
-  const infoData = [
-    {
-      label: 'Posts Num',
-      icon: <BellOutlined className="component-slidebar--info_content-item--desc_icon" />,
-      num: 1,
-    },
-    {
-      label: 'Comments Num',
-      icon: <MessageOutlined className="component-slidebar--info_content-item--desc_icon" />,
-      num: 1,
-    },
-    {
-      label: 'Operating Days',
-      icon: <FieldTimeOutlined className="component-slidebar--info_content-item--desc_icon" />,
-      num: 1,
-    },
-    {
-      label: 'Last activity',
-      icon: <NodeIndexOutlined className="component-slidebar--info_content-item--desc_icon" />,
-      num: 1,
-    }
-  ]
+  
 
   const getItemView = (item: any) => {
 
@@ -90,10 +118,60 @@ function Slidebar (props: any) {
         break;
     }
   }
+
+  /**
+   * 根据时间错
+   * @param diffTimestamp 两个时间戳的差，单位秒
+   */
+  const getRemainderTime = (diffSecond: number) => {
+    let runTime = diffSecond
+    let year = Math.floor(runTime / 86400 / 365);
+
+    runTime = runTime % (86400 * 365);
+    
+    let month = Math.floor(runTime / 86400 / 30);
+
+    runTime = runTime % (86400 * 30);
+
+    let day = Math.floor(runTime / 86400);
+
+    // runTime = runTime % 86400;
+
+    // let hour = Math.floor(runTime / 3600);
+
+    // runTime = runTime % 3600;
+
+    // let minute = Math.floor(runTime / 60);
+
+    // runTime = runTime % 60;
+
+    // let second = runTime;
+
+　　return `${month === 0 ? '12 M ' : month + ' M '}${day === 0 ? '' : day + ' D'} `;
+  }
+
+  const getBlogInfoValue = (type: string, value: any) => {
+    console.log(type, value)
+    switch (type) {
+      case 'blog_total':
+        return value
+        break;
+      case 'diff_time':
+        return getRemainderTime(value)
+        break;
+      case 'last_create_at':
+        return dayjs.unix(value).locale('en').format('ll')
+        break;
+      default:
+        return 0
+        break;
+    }
+  }
+
   const listView = listData.length > 0 && listData.map((item: any, index: number) => {
     return (
       <div className="component-slidebar--menu_content--list-item flex" key={`component-slidebar--menu_content--list-item-${index}`}>
-        <img src={require('../../assets/img/avatar.jpg')} alt="" className="component-slidebar--menu_content--list-item--avatar"/>
+        <div style={{ backgroundImage: `url('${item.cover_plan_info.full_url}')` }}  className="component-slidebar--menu_content--list-item--avatar bg"/>
         <div className="component-slidebar--menu_content--list-item--desc">
           <div className="component-slidebar--menu_content--list-item--desc_label"> {item.title} </div>
           <div className="component-slidebar--menu_content--list-item--desc_comment">
@@ -113,14 +191,14 @@ function Slidebar (props: any) {
           { item.icon }
           <div className="component-slidebar--info_content-item--desc_label">{ item.label }</div>
         </div>
-        <div className="component-slidebar--info_content-item_count"> {item.num} </div>
+        <div className="component-slidebar--info_content-item_count"> {getBlogInfoValue(infoData[index].string, blogInfo[infoData[index].string])} </div>
       </div>
     )
   })
+  
   return(
     <div className="component-slidebar flex">
-      {/* <Menu />
-      <Info /> */}
+
 
       <div className="component-slidebar--menu flex">
         <div className="component-slidebar--menu_header flex">

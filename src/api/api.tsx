@@ -66,3 +66,11 @@ export const getBlogBySort = (params: any) => {
     params
   })
 }
+
+
+// 获取blogInfo data
+export const getBlogInfo = () => {
+  return request('https://blog.laughingzhu.com/front/blog/get_stat', {
+    method: 'GET',
+  })
+}
