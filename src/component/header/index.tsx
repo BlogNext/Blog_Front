@@ -19,7 +19,7 @@ function Header (props: any) {
     console.log('fetching user', value);
     
     let res = await getSearchList({keyword: value})
-    if(res.code === 0 && res.data.count > 0) {
+    if(res.code === 0) {
       setData(res.data.list)
     } else  {
       alert('数据有误')
