@@ -5,6 +5,7 @@ import './style.less'
 import * as dayjs from 'dayjs'
 import { Toast } from 'antd-mobile';
 import { message } from 'antd';
+import router from 'umi/router';
 const menuData = [
   {
     label : 'Popular artivles',
@@ -168,9 +169,19 @@ function Slidebar (props: any) {
     }
   }
 
+
+  const listHandle = (detail_id: number) => {
+    router.push({
+      pathname: `/detail`,
+      query: {
+        id: detail_id
+      }
+    })
+  }
+
   const listView = listData.length > 0 && listData.map((item: any, index: number) => {
     return (
-      <div className="component-slidebar--menu_content--list-item flex" key={`component-slidebar--menu_content--list-item-${index}`}>
+      <div onClick={() => listHandle(item.id)} className="component-slidebar--menu_content--list-item flex" key={`component-slidebar--menu_content--list-item-${index}`}>
         <div style={{ backgroundImage: `url('${item.cover_plan_info.full_url}')` }}  className="component-slidebar--menu_content--list-item--avatar bg"/>
         <div className="component-slidebar--menu_content--list-item--desc">
           <div className="component-slidebar--menu_content--list-item--desc_label"> {item.title} </div>
