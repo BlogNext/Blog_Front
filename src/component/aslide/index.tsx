@@ -8,60 +8,25 @@ import router from 'umi/router'
 
 // 本地菜单config
 
-const menuData = [
-  {
-    label: 'Navigation',
-    path:'/Navigation',
-    children: [
-      {
-        icon: 'icon-git-branch',
-        label: 'Repository',
-        path:'/Repository',
-        children: []
-      },
-      {
-        icon: 'icon-books',
-        label: 'Books',
-        path:'/Books',
-        children: []
-      },
-      {
-        icon: 'icon-time',
-        path:'/TimeMachine',
-        label: 'TimeMachine',
-        children: []
-      }
-    ]
-  },
-  {
-    label: 'Components',
-    children: [
-      {
-        icon: 'icon-categories_',
-        path:'/Categories',
-        label: 'Categories',
-        children: []
-      },
-      {
-        icon: 'icon-pages',
-        path:'/RepositPagesory',
-        label: 'Pages',
-        children: []
-      },
-      {
-        icon: 'icon-Link',
-        path:'/Links',
-        label: 'Links',
-        children: []
-      }
-    ]
-  }
-]
-
 // iconfont 库
 const MyIcon = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2023298_wzfwjgkmi2.js', // 在 iconfont.cn 上生成
+  scriptUrl: '//at.alicdn.com/t/font_2023298_z816gmu9u6j.js', // 在 iconfont.cn 上生成
 });
+
+const IconAside = [
+  {
+    icon: 'icon-computer',
+    name: 'Front-End'
+  },
+  {
+    icon: 'icon-fuwuqi',
+    name: 'Service'
+  },
+  {
+    icon: 'icon-zailiulanqidakai',
+    name: 'Browser'
+  }
+]
 
 const toolsData = [
   {
@@ -124,6 +89,20 @@ function Aside (props: any) {
     getType()
   }, [''])
 
+  // 根据配置返回aslide icon
+  const getTypeIcon = (name: string, icon?: string) => {
+    if(icon !== undefined) return <MyIcon className="component-aside-container_menu_item--children--icon" type={icon} />
+    
+    // 语雀上的分类
+    const result = IconAside.find(item => {
+      return item.name === name
+    })
+
+    if(result) return <MyIcon className="component-aside-container_menu_item--children--icon" type={result.icon} />
+    
+    return false
+  }
+
 
   const typeHandle = (id: number) => {
     const hashname = window.location.hash
@@ -150,7 +129,7 @@ function Aside (props: any) {
             item.children.map((children: any, cIndex: number) => {
               return (
                 <div onClick={() => typeHandle(children.id)} className="component-aside-container_menu_item--children flex" key={`component-aside-container_menu_item--children${cIndex}`}>
-                  {children.icon && <MyIcon className="component-aside-container_menu_item--children--icon" type={children.icon} />}
+                  {getTypeIcon(children.yuque_name, children.icon)}
                   <div className="component-aside-container_menu_item--children--label">{ children.label ? children.label: children.yuque_name}</div>
                 </div>
               )
