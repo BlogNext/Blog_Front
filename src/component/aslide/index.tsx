@@ -10,7 +10,7 @@ import router from 'umi/router'
 
 // iconfont 库
 const MyIcon = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2023298_z816gmu9u6j.js', // 在 iconfont.cn 上生成
+  scriptUrl: '//at.alicdn.com/t/font_2023298_pufj8xudyo.js', // 在 iconfont.cn 上生成
 });
 
 const IconAside = [
@@ -75,6 +75,13 @@ function Aside (props: any) {
                 path:'/TimeMachine',
                 label: 'TimeMachine',
                 children: []
+              },
+              {
+                icon: 'icon-private',
+                path:'/Private',
+                label: 'Private',
+                id: 'private',
+                children: []
               }
             ]
           },
@@ -104,9 +111,21 @@ function Aside (props: any) {
   }
 
 
-  const typeHandle = (id: number) => {
+  const typeHandle = (id: any) => {
+    console.log(id, 22222222)
     const hashname = window.location.hash
-    if(hashname === '#/') {
+
+    if(id === 'private') {
+      // 加密空间
+      if(props.privateStatus) {
+        // 有登录
+      } else {
+        // 没有登录，弹出登录框
+
+      }
+
+      return false
+    } else if (hashname === '#/') {
       // 在首页，更新分类信息
       props.dispatch({
         type: 'menu/setType',

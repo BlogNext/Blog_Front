@@ -3,9 +3,6 @@ import "./index.less";
 import Header from '../component/header';
 import Aside from '../component/aslide'
 import SlideBar from '../component/slidebar'
-import Slogan from '../component/slogan'
-import { getCategoryList } from './service';
-// import { getCategoryList } from '../api/api'
 interface IProps {
   children: any,
   location: any

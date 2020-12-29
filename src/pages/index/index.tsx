@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "./index.less";
-import { Toast } from "antd-mobile";
-import { TweenMax } from 'gsap';
 import List from '../../component/lsit'
+import router from 'umi/router'
 
-interface IndexProps {}
+interface IndexProps {
+  location: any
+}
 interface IndexState {
   listShow: boolean
 }
@@ -18,6 +19,7 @@ class Index extends Component<IndexProps, IndexState> {
   }
 
   componentDidMount =  () => {
+    console.log(this.props.location)
     setTimeout(() => {
       this.setState({
         listShow: false

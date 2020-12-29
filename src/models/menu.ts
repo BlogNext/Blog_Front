@@ -10,7 +10,8 @@ export interface StateType {
   pageSize: number
   total: number,
   typeList: any,
-  type_id: number
+  type_id: number,
+  privateStatus: boolean
 }
 
 export interface LoginModelType {
@@ -39,7 +40,8 @@ const Model: LoginModelType = {
     pageSize: 10,
     total: 0,
     typeList: [],
-    type_id: null
+    type_id: null,
+    privateStatus: false
   },
 
   effects: {
@@ -47,6 +49,8 @@ const Model: LoginModelType = {
       const page = yield select(state =>state.menu.page)
       const pageSize = yield select(state =>state.menu.pageSize)
       const blog_type_id = yield select(state => state.menu.type_id)
+      const privateStatus = yield select(state => state.menu.privateStatus)
+      
       const response = yield call(getList, {page, per_page: pageSize, blog_type_id });
       yield put({
         type: 'changeMenuList',

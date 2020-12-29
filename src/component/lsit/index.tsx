@@ -75,14 +75,15 @@ function List (props: any) {
 }
 
 function mapStateToProps(state) {
-  const { menuList, page, pageSize, total, type_id} = state.menu;
+  const { menuList, page, pageSize, total, type_id, privateStatus } = state.menu;
   return {
     loading: state.loading.models.menu,
     menuList,
     page,
     pageSize,
     total,
-    type_id
+    type_id,
+    privateStatus
   };
 }
 
