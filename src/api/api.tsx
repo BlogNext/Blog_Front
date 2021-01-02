@@ -9,7 +9,7 @@ export const weChatJssdk = async (params: any) => {
 };
 
 export const login = async (data: any) => {
-  return request(`/front/login/Login_by_yuque`, {
+  return request(`https://blog.laughingzhu.com/front/login/Login_by_yuque`, {
     method: 'POST',
     data
   })

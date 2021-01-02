@@ -51,13 +51,13 @@ request.interceptors.request.use((url, options) => {
 
   options.headers = {
     
-    // 'oauthtoken': localStorage.getItem('blog_token') || ''
+    'x-access-token': localStorage.getItem('blog_token') || ''
   }
   console.log(options)
   return (
     {
       url,
-      // options: { ...options },
+      options: { ...options },
     }
   );
 });

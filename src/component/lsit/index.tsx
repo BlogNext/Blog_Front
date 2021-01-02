@@ -14,7 +14,7 @@ function List (props: any) {
       type: 'menu/getLists',
       payload: {id:  props.type_id}
     })
-  }, [props.page, props.type_id])
+  }, [props.page, props.type_id, props.token])
 
 
   const detailView = (data: any) => {
@@ -75,7 +75,7 @@ function List (props: any) {
 }
 
 function mapStateToProps(state) {
-  const { menuList, page, pageSize, total, type_id, privateStatus } = state.menu;
+  const { menuList, page, pageSize, total, type_id, token } = state.menu;
   return {
     loading: state.loading.models.menu,
     menuList,
@@ -83,7 +83,7 @@ function mapStateToProps(state) {
     pageSize,
     total,
     type_id,
-    privateStatus
+    token
   };
 }
 

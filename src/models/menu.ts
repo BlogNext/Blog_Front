@@ -110,11 +110,12 @@ const Model: LoginModelType = {
     *toLogin ({payload}, { call, put }) {
       const res = yield call(login, { ...payload })
       //  请求成功，保存token
-      localStorage.setItem('blog_token', res.token)
+      
       if(res.code === 0) {
+        localStorage.setItem('blog_token', res.data)
         yield put({
           type: 'setLoginHandle',
-          payload: res.token
+          payload: res.data
         })
       }
     },
