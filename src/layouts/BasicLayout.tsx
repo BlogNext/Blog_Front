@@ -4,11 +4,14 @@ import Header from '../component/header';
 import Aside from '../component/aslide'
 import SlideBar from '../component/slidebar'
 import Slogan from '../component/slogan'
+import Login from '../component/login'
 import { getCategoryList } from './service';
+import { connect } from "dva";
 // import { getCategoryList } from '../api/api'
 interface IProps {
   children: any,
-  location: any
+  location: any,
+  loginStatus: boolean
 }
 interface IState {
   cateGoryConf: any
@@ -32,7 +35,8 @@ class BasicLayout extends Component <IProps, IState> {
   public render = () => {
     const {
       children,
-      location
+      location,
+      loginStatus
     } = this.props;
     if(location.query.oauthCode) {
       localStorage.setItem('blog_token', location.query.oauthCode)
@@ -53,10 +57,20 @@ class BasicLayout extends Component <IProps, IState> {
             <div className="layout-container-content-slidebar"><SlideBar /></div>
           </div>
         </div>
+
+        { loginStatus && <Login />}
       </div>
     );
 
   }
 }
 
-export default BasicLayout;
+function mapStateToProps(state) {
+  const { loginStatus } = state.menu;
+  return {
+    loginStatus
+  };
+}
+
+
+export default connect(mapStateToProps)(BasicLayout);

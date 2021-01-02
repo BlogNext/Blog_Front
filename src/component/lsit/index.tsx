@@ -12,7 +12,7 @@ function List (props: any) {
   useEffect(() => {
     props.dispatch({
       type: 'menu/getLists',
-      payload: {}
+      payload: {id:  props.type_id}
     })
   }, [props.page, props.type_id])
 

@@ -48,11 +48,12 @@ const request = extend({
 request.interceptors.request.use((url, options) => {
   Toast.loading('加载中', 0)
 
-  // const access_token = localStorage.getItem('blog_token')
 
-  // options.headers = {
-  //   // 'oauthCode': access_token
-  // }
+  options.headers = {
+    
+    // 'oauthtoken': localStorage.getItem('blog_token') || ''
+  }
+  console.log(options)
   return (
     {
       url,

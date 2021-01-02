@@ -112,20 +112,8 @@ function Aside (props: any) {
 
 
   const typeHandle = (id: any) => {
-    console.log(id, 22222222)
     const hashname = window.location.hash
-
-    if(id === 'private') {
-      // 加密空间
-      if(props.privateStatus) {
-        // 有登录
-      } else {
-        // 没有登录，弹出登录框
-
-      }
-
-      return false
-    } else if (hashname === '#/') {
+    if (hashname === '#/') {
       // 在首页，更新分类信息
       props.dispatch({
         type: 'menu/setType',
@@ -197,13 +185,14 @@ function Aside (props: any) {
 }
 
 function mapStateToProps(state) {
-  const { menuList, page, pageSize, total} = state.menu;
+  const { menuList, page, pageSize, total, token} = state.menu;
   return {
     loading: state.loading.models.menu,
     menuList,
     page,
     pageSize,
-    total
+    total,
+    token
   };
 }
 

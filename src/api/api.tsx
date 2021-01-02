@@ -8,6 +8,13 @@ export const weChatJssdk = async (params: any) => {
   });
 };
 
+export const login = async (data: any) => {
+  return request(`/front/login/Login_by_yuque`, {
+    method: 'POST',
+    data
+  })
+}
+
 /**
  * 获取用户信息
  */
@@ -31,6 +38,13 @@ export const getCode = async (data: any) => {
 // 获取文章列表
 export const getList = (params: any) => {
   return request('https://blog.laughingzhu.com/front/blog/get_list', {
+    method: 'GET',
+    params
+  })
+}
+// 获取私密列表
+export const getPrivateList = (params: any) => {
+  return request('https://blog.laughingzhu.com/front/person/blog_list', {
     method: 'GET',
     params
   })
