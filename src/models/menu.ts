@@ -2,6 +2,7 @@ import { Reducer } from 'redux';
 import { Effect } from 'dva';
 
 import { getList, login, getPrivateList } from '../../src/api/api'
+import { message } from 'antd';
 
 
 export interface StateType {
@@ -117,6 +118,9 @@ const Model: LoginModelType = {
           type: 'setLoginHandle',
           payload: res.data
         })
+      } else {
+        message.error(res.msg, 2);
+        
       }
     },
 
