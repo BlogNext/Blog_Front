@@ -120,6 +120,7 @@ const config = {
   history: 'hash',
   runtimePublicPath: true,
   hash: true,
+  // ssr: true,
 };
 export default config;
 
