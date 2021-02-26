@@ -12,6 +12,7 @@ services:
       #jenkins执行的时候，   ./是项目的路径
       - ./:/app
       - ./dist:/app/dist
+      
       #这里啊琛哥确认编译之后的文件目录
     command:
       - /bin/sh
