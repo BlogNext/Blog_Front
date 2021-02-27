@@ -82,7 +82,7 @@ const config = {
   ],
   proxy: {
     '/common': {
-      target: 'http://laughingzhu.com:8083/common',
+      target: 'http://laughingzhu.cn:8083/common',
       changeOrigin: true,
       pathRewrite: {
         '^/common': '',
