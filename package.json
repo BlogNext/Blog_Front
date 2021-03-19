@@ -5,7 +5,8 @@
     "build": "umi build",
     "test": "umi test",
     "lint:es": "eslint --ext .js src mock tests",
-    "lint:ts": "tslint \"src/**/*.ts\" \"src/**/*.tsx\""
+    "lint:ts": "tslint \"src/**/*.ts\" \"src/**/*.tsx\"",
+    "analyze": "cross-env ANALYZE=1 umi build"
   },
   "dependencies": {
     "antd": "^4.5.4",
