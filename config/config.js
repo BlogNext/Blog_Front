@@ -17,10 +17,10 @@ const config = {
           path: '/admin/login',
           component: './admin/login'
         },
-        {
-          path: '/admin/edit',
-          component: './admin/edit'
-        }
+        // {
+        //   path: '/admin/edit',
+        //   component: './admin/edit'
+        // }
       ]
     },
     {
@@ -125,53 +125,56 @@ const config = {
         optimization: {
             minimize: true,
             splitChunks: {
-                chunks: 'async', 
-                minSize: 20000, //文件最小打包体积，单位byte，默认30000，若单个文件不满足会合并其他文件组成一个
-                minChunks: 2, //最小使用到次数，超过2次执行
-                automaticNameDelimiter: '.', //连接符
+                // chunks: 'async', 
+                // minSize: 20000, //文件最小打包体积，单位byte，默认30000，若单个文件不满足会合并其他文件组成一个
+                // minChunks: 2, //最小使用到次数，超过2次执行
+                // automaticNameDelimiter: '.', //连接符
                 cacheGroups: {
-                    vendors: {
-                        // 基本框架
-                        name: 'vendors',
-                        test: /^.*node_modules[\\/](?!react|react-dom).*$/,
-                        chunks: 'all',
-                        priority: 10,
+                  vendor: {
+                    // chunks: 'ini',
+                    test: /[\\/]node_modules[\\/]/,
+                    name(module) {
+                      const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                      // 避免服务端不支持@
+                      return `npm.${packageName.replace('@', '')}`;
                     },
-                    'antd': {
-                      // 异步加载echarts包
-                      name: 'antd',
-                      test: /^.*node_modules[\\/](?!antd).*$/,
-                      chunks: 'all',
-                      priority: 10, // 高于async-commons优先级
-                    },
-                    'quill': {
-                      // 异步加载echarts包
-                      name: 'quill',
-                      test: /^.*node_modules[\\/](?!quill|quill-emoji).*$/,
-                      chunks: 'all',
-                      priority: 10, // 高于async-commons优先级
-                    },
-                    'highlight': {
-                      // 异步加载echarts包
-                      name: 'highlight',
-                      test: /^.*node_modules[\\/](?!highlight).*$/,
-                      chunks: 'all',
-                      priority: 10, // 高于async-commons优先级
-                    },
-                    'async-commons': {
-                        // 其余异步加载包
-                        chunks: 'async',
-                        minChunks: 2,
-                        name: 'async-commons',
-                        priority: 9,
-                    },
-                    commons: {
-                        // 其余同步加载包
-                        chunks: 'all',
-                        minChunks: 2,
-                        name: 'commons',
-                        priority: 8,
-                    },
+                  },
+                    
+                    // 'antd': {
+                    //   // 异步加载echarts包
+                    //   name: 'antd',
+                    //   test: /^.*node_modules[\\/](?!antd).*$/,
+                    //   chunks: 'all',
+                    //   priority: 10, // 高于async-commons优先级
+                    // },
+                    // 'quill': {
+                    //   // 异步加载echarts包
+                    //   name: 'quill',
+                    //   test: /^.*node_modules[\\/](?!quill|quill-emoji).*$/,
+                    //   chunks: 'all',
+                    //   priority: 10, // 高于async-commons优先级
+                    // },
+                    // 'highlight': {
+                    //   // 异步加载echarts包
+                    //   name: 'highlight',
+                    //   test: /^.*node_modules[\\/](?!highlight).*$/,
+                    //   chunks: 'all',
+                    //   priority: 10, // 高于async-commons优先级
+                    // },
+                    // 'async-commons': {
+                    //     // 其余异步加载包
+                    //     chunks: 'async',
+                    //     minChunks: 2,
+                    //     name: 'async-commons',
+                    //     priority: 9,
+                    // },
+                    // commons: {
+                    //     // 其余同步加载包
+                    //     chunks: 'all',
+                    //     minChunks: 2,
+                    //     name: 'commons',
+                    //     priority: 8,
+                    // },
                 },
             },
         },

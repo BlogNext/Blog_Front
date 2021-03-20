@@ -12,6 +12,7 @@
     "antd": "^4.5.4",
     "antd-img-crop": "^3.13.1",
     "antd-mobile": "^2.3.1",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.9.5",
     "dva": "^2.6.0-beta.6",
     "gsap": "^3.4.2",
