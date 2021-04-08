@@ -47,7 +47,7 @@ const Model: LoginModelType = {
     total: 0,
     typeList: [],
     type_id: null,
-    loginStatus: true,
+    loginStatus: false,
     token: localStorage.getItem('blog_token') || ''   //如果没有默认为空字符串
   },
 
