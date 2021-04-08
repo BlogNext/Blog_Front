@@ -99,7 +99,7 @@ const config = {
     // },
   },
   theme: {
-    "primary-color": "#25b864",
+    // "primary-color": "#25b864",
   },
   // extraPostCSSPlugins: [
   //   pxToViewPort({

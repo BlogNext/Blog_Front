@@ -7,7 +7,7 @@ import './style.less'
 
 function Login (props: any) {
 
-  const [type, setType] = useState(1)
+  const [type, setType] = useState(0)
 
 
   const onFinish = values => {
