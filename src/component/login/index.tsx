@@ -1,11 +1,14 @@
 import { connect } from 'dva';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CloseOutlined } from '@ant-design/icons';
 import { Form, Input, Button } from 'antd';
 import './style.less'
 
 
 function Login (props: any) {
+
+  const [type, setType] = useState(1)
+
 
   const onFinish = values => {
     console.log('Success:', values);
@@ -22,11 +25,26 @@ function Login (props: any) {
     })
   }
 
+  const onBlur = (type: number) => {
+    setType(type)
+  }
+
+  const onFocus = (type: number) => {
+    setType(type)
+  }
+
+  // const 
+
   return (
     <div className="component-login flex">
       <div className="component-login-wrapper flex">
-        <CloseOutlined onClick={closeLogin} className='component-login-wrapper--close' />
-        <div className="component-login-wrapper--title">Login</div>
+        <img src={require('../../assets/img/login/normal.png')} alt="" className={`component-login-wrapper-carton component-login-wrapper-carton--normal ${type !== 0 && 'hidden'}`}/>
+        <img src={require('../../assets/img/login/greeting.png')} alt="" className={`component-login-wrapper-carton component-login-wrapper-carton--greeting ${type !== 1 && 'hidden'}`}/>
+        <img  src={require('../../assets/img/login/blindfold.png')} alt="" className={`component-login-wrapper-carton component-login-wrapper-carton--blindfold ${type !== 2 && 'hidden'}`}/>
+        <div className="component-login-wrapper-top flex">
+          <div className="component-login-wrapper-top--title">账密登录</div>
+          <CloseOutlined onClick={closeLogin} className='component-login-wrapper-top--close' />
+        </div>
 
         <Form
           name="basic"
@@ -38,9 +56,10 @@ function Login (props: any) {
           <Form.Item
             className="component-login-wrapper--item flex"
             name="login"
+            
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input placeholder='username' />
+            <Input onFocus={() => onFocus(1)} onBlur={() => onBlur(0)} placeholder='username' />
           </Form.Item>
 
           <Form.Item
@@ -48,15 +67,27 @@ function Login (props: any) {
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password placeholder='password' />
+            <Input.Password onFocus={() => onFocus(2)} onBlur={() => onBlur(0)} placeholder='password' />
           </Form.Item>
 
           <Form.Item className="component-login-wrapper--item flex">
-            <Button type="primary" htmlType="submit">
+            <Button type='primary' htmlType="submit" block>
               Submit
             </Button>
           </Form.Item>
+
+
         </Form>
+
+        <div className="component-login-wrapper-oauth flex">
+          <div className="component-login-wrapper-oauth-item flex">
+            <img src={require('../../assets/img/logo_tou.png')} alt=""/>
+          </div>
+        </div>
+
+        <div className="component-login-wrapper-footer flex">
+          注册登录即表示同意 <span> 用户协议</span> 、 <span>隐私政策</span>
+        </div>
       </div>
     </div>
   )
