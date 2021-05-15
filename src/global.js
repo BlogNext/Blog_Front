@@ -1,4 +1,12 @@
+/*
+ * @Description: 
+ * @Author: LaughingZhu
+ * @Date: 2021-05-12 21:17:25
+ * @LastEditros: 
+ * @LastEditTime: 2021-05-15 21:29:38
+ */
 import './global.less';
+import qs from 'qs'
 // bg()
 // import Vconsole from 'vconsole'
 // import { wxJssdk } from '@/utils/wx'
@@ -31,6 +39,15 @@ import './global.less';
 /**
  *  项目配置
  */
+
+// 保存登录token
+const searchQuery = qs.parse(location.search, {ignoreQueryPrefix: true })
+console.log(111)
+if(searchQuery.token) {
+  localStorage.setItem('blog_token', searchQuery.token)
+}
+
+
 (() => {
   if(window.localStorage.getItem('blog_config')) return false
 

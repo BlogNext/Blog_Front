@@ -2,6 +2,8 @@ import { connect } from 'dva';
 import React, { useEffect, useState } from 'react'
 import { CloseOutlined } from '@ant-design/icons';
 import { Form, Input, Button } from 'antd';
+import oauthSdk from '@laughingzhu/oauthsdk'
+
 import './style.less'
 
 
@@ -31,6 +33,11 @@ function Login (props: any) {
 
   const onFocus = (type: number) => {
     setType(type)
+  }
+
+  // 第三方登录
+  const otherLogin = () => {
+    new oauthSdk('blog_1616644960', 'https://blog.laughingzhu.cn/front/login/login_blog_next_pre_code')._init()
   }
 
   // const 
@@ -80,7 +87,7 @@ function Login (props: any) {
         </Form>
 
         <div className="component-login-wrapper-oauth flex">
-          <div className="component-login-wrapper-oauth-item flex">
+          <div className="component-login-wrapper-oauth-item flex" onClick={otherLogin}>
             <img src={require('../../assets/img/logo_tou.png')} alt=""/>
           </div>
         </div>

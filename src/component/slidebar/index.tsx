@@ -3,9 +3,8 @@ import { FireOutlined, MessageOutlined, GiftOutlined, BellOutlined, FieldTimeOut
 import { getBlogBySort, getBlogInfo } from '../../api/api'
 import './style.less'
 import * as dayjs from 'dayjs'
-import { Toast } from 'antd-mobile';
 import { message } from 'antd';
-import {history} from 'umi';
+import { history } from 'umi';
 const menuData = [
   {
     label : 'Popular artivles',
@@ -84,7 +83,6 @@ function Slidebar (props: any) {
       let res = await getBlogInfo()
       if(res.code === 0) {
         // 获取成功
-        console.log(res.data.list, 'blog list')
         setBlogInfo(res.data.list)
       } else {
         message.error(res.msg, 2)
