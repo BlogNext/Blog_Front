@@ -3,15 +3,17 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-12 21:17:25
  * @LastEditros: 
- * @LastEditTime: 2021-05-15 21:29:38
+ * @LastEditTime: 2021-05-15 21:33:54
  */
 import './global.less';
 import qs from 'qs'
+import oauthSdk from '@laughingzhu/oauthsdk'
 // bg()
 // import Vconsole from 'vconsole'
 // import { wxJssdk } from '@/utils/wx'
 // import { weChatJssdk } from '@/services/api'
-// new Vconsole()
+// import { oauthSdk } from '@laughingzhu/oauthsdk';
+new oauthSdk('blog_1616644960', 'https://blog.laughingzhu.cn/front/login/login_blog_next_pre_code').login()
 
 
 // 添加背景音乐 wxSDK
