@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: LaughingZhu
+ * @Date: 2021-05-12 21:17:25
+ * @LastEditros: 
+ * @LastEditTime: 2021-05-15 14:39:45
+ */
 import React, { Component } from "react";
 import "./index.less";
 import Header from '../component/header';
@@ -54,7 +61,7 @@ class BasicLayout extends Component <IProps, IState> {
               <Slogan />
               {children}
             </div>
-            <div className="layout-container-content-slidebar"><SlideBar /></div>
+            <div className="layout-container-content-slidebar flex"><SlideBar /></div>
           </div>
         </div>
 

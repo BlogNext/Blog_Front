@@ -4,7 +4,7 @@ import { createFromIconfontCN } from '@ant-design/icons';
 import { Divider, Tooltip } from 'antd'
 import './style.less'
 import { connect } from 'dva';
-import router from 'umi/router'
+import { history } from 'umi'
 
 // 本地菜单config
 
@@ -121,7 +121,7 @@ function Aside (props: any) {
       })
     } else {
       // 不在首页，返回首页
-      router.push({
+      history.push({
         pathname: '/',
       })
     }

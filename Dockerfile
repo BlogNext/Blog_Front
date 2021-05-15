@@ -9,7 +9,7 @@ RUN npm config set registry https://registry.npm.taobao.org
 # RUN npm config set registry https://registry.npmjs.org/
 
 #安装umi
-RUN npm install -g umi@2.13.16
+RUN npm install -g umi@3.4.19
 RUN echo success
 
 WORKDIR /app

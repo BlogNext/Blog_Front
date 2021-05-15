@@ -1,10 +1,17 @@
+/*
+ * @Description: 
+ * @Author: LaughingZhu
+ * @Date: 2021-05-12 21:17:25
+ * @LastEditros: 
+ * @LastEditTime: 2021-05-15 14:21:32
+ */
 import React, { useEffect, useState } from 'react'
 import { Badge, Pagination } from 'antd'
 import { UserOutlined, FieldTimeOutlined, MessageOutlined } from '@ant-design/icons'
 import * as dayjs from 'dayjs'
 import { connect } from 'dva';
 var localizedFormat = require('dayjs/plugin/localizedFormat')
-import router from 'umi/router'
+import {history} from 'umi'
 import './style.less'
 
 function List (props: any) {
@@ -19,7 +26,7 @@ function List (props: any) {
 
   const detailView = (data: any) => {
     window.localStorage.setItem('detail', JSON.stringify(data))
-    router.push({
+    history.push({
       pathname: `/detail`,
       query: {
         id: data.id

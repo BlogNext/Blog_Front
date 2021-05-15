@@ -1,7 +1,14 @@
+/*
+ * @Description: 
+ * @Author: LaughingZhu
+ * @Date: 2021-05-12 21:17:25
+ * @LastEditros: 
+ * @LastEditTime: 2021-05-15 14:21:55
+ */
 import React, { Component } from "react";
 import "./index.less";
 import List from '../../component/lsit'
-import router from 'umi/router'
+import {history} from 'umi'
 
 interface IndexProps {
   location: any

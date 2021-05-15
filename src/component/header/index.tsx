@@ -4,7 +4,7 @@ import { SettingOutlined, MessageOutlined, BulbOutlined, KeyOutlined } from '@an
 import { getSearchList } from '../../api/api'
 import { Select, Spin } from 'antd'
 import './style.less'
-import router from 'umi/router';
+import { history } from 'umi';
 import { connect } from 'dva';
 
 
@@ -29,7 +29,7 @@ function Header (props: any) {
   const fetchData = debounce(getSearch, 800)
 
   const handleChange = (value) => {
-    router.push({
+    history.push({
       pathname: '/detail',
       query: {
         id: value.value
@@ -48,7 +48,7 @@ function Header (props: any) {
       })
     } else {
       // 不在首页，返回首页
-      router.push({
+      history.push({
         pathname: '/',
       })
     }

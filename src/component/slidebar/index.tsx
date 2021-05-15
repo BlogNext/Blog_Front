@@ -5,7 +5,7 @@ import './style.less'
 import * as dayjs from 'dayjs'
 import { Toast } from 'antd-mobile';
 import { message } from 'antd';
-import router from 'umi/router';
+import {history} from 'umi';
 const menuData = [
   {
     label : 'Popular artivles',
@@ -171,7 +171,7 @@ function Slidebar (props: any) {
 
 
   const listHandle = (detail_id: number) => {
-    router.push({
+    history.push({
       pathname: `/detail`,
       query: {
         id: detail_id

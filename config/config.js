@@ -1,6 +1,5 @@
 // import pxToViewPort from 'postcss-px-to-viewport';
 const config = {
-  treeShaking: true,
   routes: [
     
 
@@ -52,34 +51,10 @@ const config = {
       
     },
   ],
-  plugins: [
-    // ref: https://umijs.org/plugin/umi-plugin-react.html
-    [
-      'umi-plugin-react',
-      {
-        antd: true,
-        dva: {
-          hmr: true,
-        },
-        dynamicImport: {
-          webpackChunkName: true,
-        },
-        title: `LaughingZhu's Blog`,
-        // dll: true,
-        routes: {
-          exclude: [
-            /models\//,
-            /services\//,
-            /model\.(t|j)sx?$/,
-            /service\.(t|j)sx?$/,
-            /components\//,
-          ],
-        },
-        // hd: true,
-        fastClick: true,
-      },
-    ],
-  ],
+  dva: {},
+  antd: {},
+  dynamicImport: {},
+  title: `LaughingZhu's Blog`,
   proxy: {
     '/common': {
       target: 'http://laughingzhu.cn:8083/common',
@@ -98,9 +73,6 @@ const config = {
     //   secure: false,
     // },
   },
-  theme: {
-    // "primary-color": "#25b864",
-  },
   // extraPostCSSPlugins: [
   //   pxToViewPort({
   //     viewportWidth: 750,
@@ -113,14 +85,20 @@ const config = {
   //   }),
   // ],
   publicPath: './',
+  fastRefresh: {},
+  favicon: '/assets/favicon.ico',
   base: '/',
-  targets: {
-    ie: 9,
-  },
-  history: 'hash',
-  runtimePublicPath: true,
+  // 兼容ie9
+  // targets: {
+  //   ie: 9,
+  // },
   hash: true,
+  history: {
+    type: 'hash'
+  },
+  runtimePublicPath: true,
   chainWebpack: function(config, { webpack }) {
+    // 删除 umi 内置插件
     config.merge({
         optimization: {
             minimize: true,
@@ -187,7 +165,6 @@ const config = {
             return [/moment[/\\]locale$/, /zh-cn/];
     });
   },
-  // ssr: true,
 };
 export default config;
 
