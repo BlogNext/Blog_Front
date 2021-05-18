@@ -94,7 +94,7 @@ const config = {
   // },
   hash: true,
   history: {
-    type: 'hash'
+    type: 'browser'
   },
   runtimePublicPath: true,
   chainWebpack: function(config, { webpack }) {
