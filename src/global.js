@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-12 21:17:25
  * @LastEditros: 
- * @LastEditTime: 2021-05-19 18:11:50
+ * @LastEditTime: 2021-05-19 18:15:40
  */
 import './global.less';
 import qs from 'qs'
@@ -49,7 +49,7 @@ console.log(111)
 if(searchQuery.token) {
   localStorage.setItem('blog_token', searchQuery.token)
   let initData = JSON.parse(JSON.stringify(searchQuery))
-  delete initData.pre_oauth_core
+  delete initData.pre_auth_code
   delete initData.token
   
   location.replace(`${location.href.split('?')[0]}?${qs.stringify(initData)}`)
