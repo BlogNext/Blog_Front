@@ -9,7 +9,7 @@
     "analyze": "cross-env ANALYZE=1 umi build"
   },
   "dependencies": {
-    "@laughingzhu/oauthsdk": "^1.0.5",
+    "@laughingzhu/oauthsdk": "^1.0.6",
     "antd": "^4.5.4",
     "antd-img-crop": "^3.13.1",
     "antd-mobile": "^2.3.1",
