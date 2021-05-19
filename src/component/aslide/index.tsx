@@ -112,8 +112,8 @@ function Aside (props: any) {
 
 
   const typeHandle = (id: any) => {
-    const hashname = window.location.hash
-    if (hashname === '#/') {
+    console.log(window.location)
+    if (location.href.indexOf('/detail') < 0) {
       // 在首页，更新分类信息
       props.dispatch({
         type: 'menu/setType',
