@@ -30,11 +30,8 @@ class DetailLayout extends Component <IProps, IState> {
   public render = () => {
     const {
       children,
-      location
     } = this.props;
-    if(location.query.oauthCode) {
-      localStorage.setItem('blog_token', location.query.oauthCode)
-    }
+
     return (
 
       <div className="layout" >

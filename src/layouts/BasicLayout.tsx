@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-12 21:17:25
  * @LastEditros: 
- * @LastEditTime: 2021-05-15 14:39:45
+ * @LastEditTime: 2021-05-19 17:06:38
  */
 import React, { Component } from "react";
 import "./index.less";
@@ -45,9 +45,7 @@ class BasicLayout extends Component <IProps, IState> {
       location,
       loginStatus
     } = this.props;
-    if(location.query.oauthCode) {
-      localStorage.setItem('blog_token', location.query.oauthCode)
-    }
+
     return (
 
       <div className="layout" >

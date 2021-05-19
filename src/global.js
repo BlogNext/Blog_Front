@@ -3,10 +3,11 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-12 21:17:25
  * @LastEditros: 
- * @LastEditTime: 2021-05-15 21:33:54
+ * @LastEditTime: 2021-05-19 17:06:13
  */
 import './global.less';
 import qs from 'qs'
+import { history } from 'umi'
 import oauthSdk from '@laughingzhu/oauthsdk'
 // bg()
 // import Vconsole from 'vconsole'
@@ -70,3 +71,8 @@ window.addEventListener('hashchange', (e) => {
   const { newURL, oldURL } = e
   console.log(newURL, oldURL)
 }, false);
+
+
+
+
+

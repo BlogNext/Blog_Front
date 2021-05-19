@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: LaughingZhu
+ * @Date: 2021-05-10 13:48:37
+ * @LastEditros: 
+ * @LastEditTime: 2021-05-19 17:06:25
+ */
 import React, { Component } from "react";
 import { getCategoryList } from './service';
 // import {getInfo} from '../api/api'
@@ -48,11 +55,8 @@ class AdminLayout extends Component <IProps, IState> {
   public render = () => {
     const {
       children,
-      location
     } = this.props;
-    if(location.query.oauthCode) {
-      localStorage.setItem('blog_token', location.query.oauthCode)
-    }
+
 
 
     return (
