@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-12 21:17:25
  * @LastEditros: 
- * @LastEditTime: 2021-05-19 18:15:40
+ * @LastEditTime: 2021-05-20 14:54:58
  */
 import './global.less';
 import qs from 'qs'
@@ -51,8 +51,10 @@ if(searchQuery.token) {
   let initData = JSON.parse(JSON.stringify(searchQuery))
   delete initData.pre_auth_code
   delete initData.token
+
+  let prefix = Object.values(initData).length > 0 ? '?' : '';
   
-  location.replace(`${location.href.split('?')[0]}?${qs.stringify(initData)}`)
+  location.replace(`${location.href.split('?')[0]}${prefix}${qs.stringify(initData)}`)
 }
 
 
