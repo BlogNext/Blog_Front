@@ -94,11 +94,11 @@ const config = {
   // },
   hash: true,
   history: {
-    type: 'browser'
+    type: 'hash'
   },
-  exportStatic: {
-    htmlSuffix: true
-  },
+  // exportStatic: {
+  //   htmlSuffix: true
+  // },
   runtimePublicPath: true,
   chainWebpack: function(config, { webpack }) {
     // 删除 umi 内置插件
