@@ -1,5 +1,29 @@
-# summer_class
+# ssr-with-eggjs
 
-[![All Stars](https://github-readme-stats.vercel.app/api?username=LaughingZhu&theme=dracula&show_icons=true&count_private=true)](https://github.com/LaughingZhu)  
-![Blog_Front](https://github-readme-stats.vercel.app/api/pin/?username=BlogNext&repo=Blog_Front&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)  
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=LaughingZhu)
+## Install
+
+```sh
+$ yarn
+```
+
+## Usage
+
+Development
+
+```sh
+$ npm run dev
+$ open http://localhost:7001/
+```
+
+Build
+
+```bash
+$ npm run build
+```
+# 国际化
+ 目前是按照cookie > 浏览器默认语言 > 默认语言顺序选择
+ 由于服务端获取不到localStorage，所以要通过cookie将
+ 所需信息带到服务端
+
+# 部署
+ egg内置了cluster模式，执行yarn start即可，详情见[egg官网](https://eggjs.org)

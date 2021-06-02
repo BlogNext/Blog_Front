@@ -17,3 +17,8 @@
 .umi
 .umi-production
 .idea/
+/run
+
+/app/public
+
+/logs
