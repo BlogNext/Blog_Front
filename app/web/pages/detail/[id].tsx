@@ -46,16 +46,15 @@ function beforNumber(code) {
 
 const Detail = (props: any) => {
   const { id } = useParams()
-
   useEffect(() => {
     updateDetail()
-  }, [])
+  }, [id])
 
-  const updateDetail = () => {
+  const updateDetail = async() => {
     if(props.detail_id === null) return false;
 
     if(Number(id) === Number(props.detail_id)) return false;
-    props.dispatch({ type: 'menu/getDetailInfo', payload: id })
+    await props.dispatch({ type: 'menu/getDetailInfo', payload: id })
   
   }
   dayjs.extend(localizedFormat)

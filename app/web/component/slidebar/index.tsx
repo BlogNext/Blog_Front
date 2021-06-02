@@ -190,11 +190,9 @@ function Slidebar (props: any) {
 
 
   const listHandle = (detail_id: number) => {
-    history.push({
-      pathname: `/detail`,
-      query: {
-        id: detail_id
-      }
+    // history.replace(`/detail/${detail_id}`)
+    history.replace({
+      pathname: `/detail/${detail_id}`,
     })
   }
 
