@@ -1,0 +1,24 @@
+version: '3'
+services:
+  blog_next_front_ssr:
+    container_name: blog_next_front_ssr
+    #指定构建的Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
+      #工作目录空间
+    working_dir: /app
+    ports:
+      - "7001:7001"
+    volumes:
+      #jenkins执行的时候，   ./是项目的路径
+      - ./:/app
+      #这里啊琛哥确认编译之后的文件目录
+    command:
+      - /bin/sh
+      - -c
+      - |
+        npm install
+        npm run stop
+        npm run build
+        npm run start
