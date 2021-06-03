@@ -21,7 +21,6 @@ marked.setOptions({ // marked 设置
   smartLists: true,
   smartypants: false,
   highlight: function (code, lang) {
-    
     return beforNumber(hljs.highlightAuto(code).value)
   }
 })
