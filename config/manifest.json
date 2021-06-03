@@ -1,0 +1,24 @@
+{
+  "_chunksMap": {
+    "umi": [
+      "/umi.ba0d1eaa.css",
+      "/umi.2d141dfc.js"
+    ]
+  },
+  "umi.css": "umi.ba0d1eaa.css",
+  "umi.js": "umi.2d141dfc.js",
+  "bg_canvas.js": "bg_canvas.js",
+  "favicon.ico": "favicon.ico",
+  "index.html": "index.html",
+  "laughing_logo.png": "laughing_logo.png",
+  "sitemap.xml": "sitemap.xml",
+  "static/6.jpg": "static/6.48ed7317.jpg",
+  "static/avatar.jpg": "static/avatar.c2fa8ff5.jpg",
+  "static/blindfold.png": "static/blindfold.6413a89d.png",
+  "static/greeting.png": "static/greeting.dfb997ad.png",
+  "static/logo_tou.png": "static/logo_tou.21d70027.png",
+  "static/normal.png": "static/normal.95943743.png",
+  "static/snow.gif": "static/snow.82efa8e1.gif",
+  "static/sourcesanspro.woff": "static/sourcesanspro.ae78d02c.woff",
+  "static/spotlight.jpg": "static/spotlight.0ec89134.jpg"
+}
