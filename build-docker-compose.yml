@@ -20,5 +20,4 @@ services:
       - |
         npm install
         npm run stop
-        npm run build
         npm run start

@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-02 22:39:55
+ * @LastEditTime: 2021-06-03 14:59:31
  */
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -15,7 +15,7 @@ export default defineConfig({
   ssr: {
     devServerRender: false,
     // forceInitial: true,
-    mode: 'stream'
+    // mode: 'stream'
   },
   hash: true,
   outputPath: '../public',
