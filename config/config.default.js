@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-05-31 09:36:25
+ * @LastEditTime: 2021-06-03 10:22:18
  */
 'use strict';
 const path = require('path');
@@ -20,7 +20,7 @@ module.exports = (appInfo, appConfig = {}) => {
   config.middleware = [];
 
   config.assets = {
-    publicPath: '/public/',
+    publicPath: '/public',
     devServer: {
       command: 'umi dev',
       env: {

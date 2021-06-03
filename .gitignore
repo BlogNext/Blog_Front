@@ -22,3 +22,5 @@
 /app/public
 
 /logs
+
+/config/manifest.json
