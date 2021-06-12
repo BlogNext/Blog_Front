@@ -50,11 +50,15 @@ const Detail = (props: any) => {
   }, [id])
 
   const updateDetail = async() => {
-    if(props.detail_id === null) return false;
-
+    console.log(props.detail_id, id)
     if(Number(id) === Number(props.detail_id)) return false;
+
+    if(props.detail_id === null && id) {
+      await props.dispatch({ type: 'menu/getDetailInfo', payload: id })
+      return false
+    }
+
     await props.dispatch({ type: 'menu/getDetailInfo', payload: id })
-  
   }
   dayjs.extend(localizedFormat)
   const { detail } = props
