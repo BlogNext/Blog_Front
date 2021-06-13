@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-03 14:59:31
+ * @LastEditTime: 2021-06-13 11:30:38
  */
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -17,15 +17,17 @@ export default defineConfig({
     // forceInitial: true,
     // mode: 'stream'
   },
-  hash: true,
+  hash: false,
   outputPath: '../public',
   manifest: {
     fileName: '../../config/manifest.json',
     // 为 ''，不然会有两个 /
-    publicPath: '',
+    
   },
+  publicPath: '/public/',
+  base: '/public/',
   favicon: '../public/favicon.ico',
-  // dynamicImport: {},
+  dynamicImport: {},
   locale: {
     default: 'zh-CN',
     antd: false,
