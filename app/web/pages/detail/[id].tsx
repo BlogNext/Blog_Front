@@ -7,9 +7,9 @@ import { Badge } from 'antd'
 import * as dayjs from 'dayjs'
 import hljs from 'highlight.js';
 import 'highlight.js/styles/darcula.css'
-hljs.initHighlightingOnLoad()
+hljs.highlightAll()
 let localizedFormat = require('dayjs/plugin/localizedFormat')
-import { connect, isBrowser, useParams } from 'umi';
+import { connect, isBrowser, useParams, Helmet } from 'umi';
 
 marked.setOptions({ // marked 设置
   renderer: new marked.Renderer(),
@@ -63,9 +63,12 @@ const Detail = (props: any) => {
   dayjs.extend(localizedFormat)
   const { detail } = props
 
-
   return (
     <div className="detail">
+      <Helmet encodeSpecialCharacters={false}>
+        {/* <html lang="en" data-direction="666" /> */}
+        <title>{detail.title}</title>
+      </Helmet>
       {detail.id && (
         <div className="detail-wrapper">
           <div className="detail-wrapper-header flex">

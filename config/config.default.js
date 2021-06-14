@@ -3,11 +3,11 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-13 11:36:48
+ * @LastEditTime: 2021-06-14 14:44:48
  */
 'use strict';
 const path = require('path');
-
+const fs = require('fs');
 module.exports = (appInfo, appConfig = {}) => {
   const assetsDir =
     (appConfig.assets && appConfig.assets.assetsDir) || 'app/web';
@@ -40,6 +40,9 @@ module.exports = (appInfo, appConfig = {}) => {
     },
     defaultViewEngine: 'nunjucks',
   };
+  config.setFile = {
+    '/favicon.ico': `${appConfig.assets}favicon.png`,
+  }
 
   config.proxy = true;
 

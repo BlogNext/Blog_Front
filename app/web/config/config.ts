@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-14 13:51:28
+ * @LastEditTime: 2021-06-14 14:33:05
  */
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -26,7 +26,7 @@ export default defineConfig({
   },
   publicPath: '/public/',
   base: '/public/',
-  favicon: '../public/favicon.ico',
+  // favicon: '../public/favicon.ico',
   dynamicImport: {},
   locale: {
     default: 'zh-CN',
@@ -35,7 +35,7 @@ export default defineConfig({
     baseNavigator: true,
     baseSeparator: '-',
   },
-  // exportStatic: {},
+  exportStatic: {},
   dva: {
     immer: true,
     // hmr: false,
@@ -53,7 +53,8 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  title: "LaughingZhu Blog",
+  // title: "LaughingZhu Blog",
+  title: false,
   routes: [
     
     {
