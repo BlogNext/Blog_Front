@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-13 12:53:09
+ * @LastEditTime: 2021-06-14 13:51:28
  */
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -17,7 +17,7 @@ export default defineConfig({
     // forceInitial: true,
     // mode: 'stream'
   },
-  hash: false,
+  hash: true,
   outputPath: '../public',
   manifest: {
     fileName: '../../config/manifest.json',
