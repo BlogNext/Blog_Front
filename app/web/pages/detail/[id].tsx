@@ -7,7 +7,7 @@ import { Badge } from 'antd'
 import * as dayjs from 'dayjs'
 import hljs from 'highlight.js';
 import 'highlight.js/styles/darcula.css'
-hljs.highlightAll()
+hljs.initHighlightingOnLoad()
 let localizedFormat = require('dayjs/plugin/localizedFormat')
 import { connect, isBrowser, useParams, Helmet } from 'umi';
 
