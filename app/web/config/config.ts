@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-15 15:36:57
+ * @LastEditTime: 2021-06-15 15:44:36
  */
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -35,7 +35,7 @@ export default defineConfig({
     baseNavigator: true,
     baseSeparator: '-',
   },
-  exportStatic: {},
+  // exportStatic: {},
   dva: {
     immer: true,
     // hmr: false,
