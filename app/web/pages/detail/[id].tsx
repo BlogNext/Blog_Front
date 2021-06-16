@@ -68,6 +68,8 @@ const Detail = (props: any) => {
       <Helmet encodeSpecialCharacters={false}>
         {/* <html lang="en" data-direction="666" /> */}
         <title>{detail.title}</title>
+        <meta name="keywords" content={`${detail.title}`} />
+        <meta name="description" content={detail.abstract} />
       </Helmet>
       {detail.id && (
         <div className="detail-wrapper">

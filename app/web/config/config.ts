@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-15 15:49:39
+ * @LastEditTime: 2021-06-16 17:30:32
  */
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -40,16 +40,16 @@ export default defineConfig({
     immer: true,
     // hmr: false,
   },
-  metas: [
-    {
-      name: 'keywords',
-      content: 'LaughingZhu Blog LaughingZhu',
-    },
-    {
-      name: 'description',
-      content: `LaughingZhu's Blog, 技术、生活、兴趣博客`,
-    },
-  ],
+  // metas: [
+  //   {
+  //     name: 'keywords',
+  //     content: 'LaughingZhu Blog LaughingZhu',
+  //   },
+  //   {
+  //     name: 'description',
+  //     content: `LaughingZhu's Blog, 技术、生活、兴趣博客`,
+  //   },
+  // ],
   nodeModulesTransform: {
     type: 'none',
   },

@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-12 21:17:25
  * @LastEditros: 
- * @LastEditTime: 2021-06-14 14:15:27
+ * @LastEditTime: 2021-06-16 17:23:43
  */
 import * as React from "react";
 import "./style.less";
@@ -28,6 +28,8 @@ class Index extends React.Component<IndexProps, IndexState> {
         <Helmet encodeSpecialCharacters={false}>
           {/* <html lang="en" data-direction="666" /> */}
           <title>LaughingZhu's Blog</title>
+          <meta name="keywords" content='LaughingZhu Blog LaughingZhu' />
+          <meta name="description" content={`LaughingZhu's Blog, 技术、生活、兴趣博客`} />
         </Helmet>
         <List />
       </div>
