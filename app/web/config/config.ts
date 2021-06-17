@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-16 17:30:32
+ * @LastEditTime: 2021-06-17 15:21:32
  */
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -22,12 +22,12 @@ export default defineConfig({
   manifest: {
     fileName: '../../config/manifest.json',
     // 为 ''，不然会有两个 /
-    
   },
   publicPath: '/public/',
   base: '/public/',
   // favicon: '../public/favicon.ico',
   dynamicImport: {},
+  // runtimePublicPath: true,
   locale: {
     default: 'zh-CN',
     antd: false,

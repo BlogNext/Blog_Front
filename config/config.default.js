@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-14 14:44:48
+ * @LastEditTime: 2021-06-17 15:21:00
  */
 'use strict';
 const path = require('path');
@@ -50,6 +50,12 @@ module.exports = (appInfo, appConfig = {}) => {
     csrf: false,
     xframe: {
       enable: false,
+    },
+  };
+  config.customLogger = {
+    scheduleLogger: {
+      consoleLevel: 'NONE',
+      file: path.join(appInfo.root, 'logs', appInfo.name, 'egg-schedule.log'),
     },
   };
 
