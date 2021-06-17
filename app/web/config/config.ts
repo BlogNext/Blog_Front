@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-17 15:21:32
+ * @LastEditTime: 2021-06-17 16:18:46
  */
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -22,6 +22,8 @@ export default defineConfig({
   manifest: {
     fileName: '../../config/manifest.json',
     // 为 ''，不然会有两个 /
+    publicPath: '',
+
   },
   publicPath: '/public/',
   base: '/public/',

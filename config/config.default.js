@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-17 15:21:00
+ * @LastEditTime: 2021-06-17 16:18:18
  */
 'use strict';
 const path = require('path');
@@ -42,6 +42,9 @@ module.exports = (appInfo, appConfig = {}) => {
   };
   config.setFile = {
     '/favicon.ico': `${appConfig.assets}favicon.png`,
+    // '/sitemap.xml': fs.readFileSync(path.join(__dirname, '/app/public/sitemap.xml')),
+    '/robots.txt': fs.readFileSync(path.join(__dirname, '/robots.txt')),
+
   }
 
   config.proxy = true;

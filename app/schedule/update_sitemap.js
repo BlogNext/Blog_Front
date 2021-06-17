@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-06-17 09:50:11
  * @LastEditros: 
- * @LastEditTime: 2021-06-17 15:15:46
+ * @LastEditTime: 2021-06-17 16:08:09
  */
 const Subscription = require('egg').Subscription;
 const { SitemapStream, streamToPromise } = require( 'sitemap' )
