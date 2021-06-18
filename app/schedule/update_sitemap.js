@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-06-17 09:50:11
  * @LastEditros: 
- * @LastEditTime: 2021-06-17 16:08:09
+ * @LastEditTime: 2021-06-18 10:31:01
  */
 const Subscription = require('egg').Subscription;
 const { SitemapStream, streamToPromise } = require( 'sitemap' )
@@ -27,6 +27,7 @@ class UpdateCache extends Subscription {
 
   static get schedule() {
     return {
+      // interval: '4s',
       cron: '0 0 0 * * *', // 每天晚上0点 0分 定时执行
       type: 'all', // 指定所有的 worker 都需要执行
     };
@@ -35,14 +36,13 @@ class UpdateCache extends Subscription {
   async getListByPage () {
       const res = await fetch(`https://blog.laughingzhu.cn/front/blog/get_list?page=${this.page}&per_page=10`)
       const result = await res.json()
-
       if(result.data.page_count >= this.page) {
         for (let i = 0; i < result.data.list.length; i ++) {
           this.links.push({
             url: `/detail/${result.data.list[i].id}`,
             changefreq: 'daily',
             priority: 0.7,
-            lastmod: dayjs.unix(result.data.list[i].updated_at).utc(true).format()
+            // lastmod: result.data.list[i].updated_at
           })          
         }
 
