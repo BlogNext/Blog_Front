@@ -19,7 +19,7 @@
 .idea/
 /run
 
-# /app/public
+/app/public
 
 /logs
 

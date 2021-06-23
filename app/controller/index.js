@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-13 11:16:47
+ * @LastEditTime: 2021-06-23 09:38:04
  */
 const { Controller } = require('egg');
 
@@ -25,9 +25,11 @@ class HomeController extends Controller {
 
     // 将 html 模板传到服务端渲染函数中
     // console.log(app)
-
+    const publicPath = ctx.helper.assets.resourceBase;
+    console.log(publicPath, 'publicPath')
     const { error, html } = await this.serverRender({
       path: ctx.url,
+      publicPath,
       getInitialPropsCtx: {},
       htmlTemplate,
     });
