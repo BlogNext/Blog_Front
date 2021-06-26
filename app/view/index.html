@@ -3,37 +3,31 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-29 14:08:40
  * @LastEditros: 
- * @LastEditTime: 2021-06-14 14:55:12
+ * @LastEditTime: 2021-06-23 09:26:08
 -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
-    />
-    <!-- <title>LaughingZhu's Blog</title> -->
-    <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico">
-    {{ helper.assets.getStyle('umi.css') | safe }}
 
-    <script>
-      window.routerBase = "/";
-    </script>
-    <script>
-      //! umi version: 3.4.23
-    </script>
-    <!-- <script src='<%= context.publickPath %>/bg_canvas.js' ></script> -->
-  </head>
-  <body>
-    <div id="root"></div>
-    <script>
-      window.routerBase = '/';
-      window.resourceBaseUrl = '{{ helper.assets.resourceBase }}';
-    </script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  <!-- <title>LaughingZhu's Blog</title> -->
+  <link rel="shortcut icon" type="image/x-icon" href="/public/favicon.ico">
+  {{ helper.assets.getStyle('umi.css') | safe }}
 
-    {{ helper.assets.getScript('umi.js') | safe }}
-    {{ helper.assets.getScript('bg_canvas.js') | safe }}
+</head>
 
-  </body>
+<body>
+  <div id="root"></div>
+  <script>
+    window.routerBase = '/';
+    window.resourceBaseUrl = '{{ helper.assets.resourceBase }}';
+  </script>
+
+  {{ helper.assets.getScript('umi.js') | safe }}
+  {{ helper.assets.getScript('bg_canvas.js') | safe }}
+
+</body>
+
 </html>

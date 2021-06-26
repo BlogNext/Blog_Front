@@ -19,8 +19,8 @@
 .idea/
 /run
 
-# /app/public
+/app/public
 
 /logs
 
-# /config/manifest.json
+/config/manifest.json
