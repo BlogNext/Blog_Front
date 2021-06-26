@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-29 14:08:40
  * @LastEditros: 
- * @LastEditTime: 2021-05-30 11:34:38
+ * @LastEditTime: 2021-06-26 16:34:35
  */
 // @ts-ignore
 // import request from "@/utils/request";
@@ -12,6 +12,7 @@ import { request } from 'umi';
 // 微信配置
 export const weChatJssdk = async (params: any) => {
   return request(`/api/wechat/bj/jssdk?url=${params}`, {
+    
     method: "GET",
   });
 };
@@ -27,14 +28,20 @@ export const login = async (data: any) => {
 export const getList = async(params: any) => {
   return request('https://blog.laughingzhu.cn/front/blog/get_list', {
     method: 'GET',
-    params
+    params,
+    headers: {
+      'x-access-token': localStorage.getItem('blog_token') || ''
+    }
   })
 }
 // 获取私密列表
 export const getPrivateList = (params: any) => {
   return request('https://blog.laughingzhu.cn/front/person/blog_list', {
     method: 'GET',
-    params
+    params,
+    headers: {
+      'x-access-token': localStorage.getItem('blog_token') || ''
+    }
   })
 }
 
