@@ -96,10 +96,10 @@ const Model: LoginModelType = {
       yield put ({
         type: 'cleanTypeHandle',
       })
-      yield put({
-        type: 'getLists',
-        payload: {},
-      });
+      // yield put({
+      //   type: 'getLists',
+      //   payload: {},
+      // });
     },
 
     // 设置分类信息

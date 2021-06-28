@@ -4,7 +4,7 @@ import { SettingOutlined, MessageOutlined, BulbOutlined, KeyOutlined } from '@an
 import { getSearchList } from '../../api/api'
 import { Select, Spin } from 'antd'
 import './style.less'
-import { history } from 'umi';
+import { history, withRouter } from 'umi';
 import { connect } from 'dva';
 
 
@@ -12,6 +12,7 @@ function Header (props: any) {
   const [data, setData] = useState([])
   const [value, setValue] = useState(undefined)
   const [fetching, setFetching] = useState(false)
+  console.log(props)
   useEffect(() => {
   }, [''])
 
@@ -37,9 +38,8 @@ function Header (props: any) {
   }
 
   const titleHandle = () => {
-
-    const hashname = window.location.hash
-    if(hashname === '#/') {
+    const hashname = props.match.url
+    if(hashname === '/') {
       // 在首页，清除分类信息
       props.dispatch({
         type: 'menu/cleanType',
@@ -55,9 +55,9 @@ function Header (props: any) {
 
   return(
     <div className="component-header flex">
-      <div className="component-header_title flex">
+      <div onClick={titleHandle} className="component-header_title flex">
         {/* <HomeOutlined className='component-header_title_icon' /> */}
-        <span onClick={titleHandle}>LaughingZhu's Blog</span>
+        <span >LaughingZhu's Blog</span>
       </div>
 
       <div className="component-header_container flex">
@@ -116,4 +116,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
