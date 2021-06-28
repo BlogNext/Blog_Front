@@ -85,6 +85,10 @@ const Model: LoginModelType = {
         type: 'changeMenuPage',
         payload: payload.page
       });
+      yield put({
+        type: 'getLists',
+        payload: {},
+      });
     },
 
     // 清空分类信息
