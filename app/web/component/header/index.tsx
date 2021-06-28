@@ -43,10 +43,14 @@ function Header (props: any) {
     if(hashname === '/') {
       // 在首页，清除分类信息
       props.dispatch({
-        type: 'menu/cleanType',
-        payload: {}
+        type: 'menu/setType',
+        payload: {id: null}
       })
     } else {
+      props.dispatch({
+        type: 'menu/setType',
+        payload: {id: null}
+      })
       // 不在首页，返回首页
       history.push({
         pathname: '/',
