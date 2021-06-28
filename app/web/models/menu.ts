@@ -28,7 +28,6 @@ export interface LoginModelType {
     toLogin: Effect;
     getDetailInfo: Effect;
     changeLoginStatus: Effect;
-    getPersonLists: Effect;
   };
   reducers: {
     changeMenuList: Reducer<StateType>;
@@ -79,20 +78,6 @@ const Model: LoginModelType = {
       }
     },
 
-    *getPersonLists({ payload }, { call, put, select }) {
-      
-      const page = yield select(state =>state.menu.page)
-      const pageSize = yield select(state =>state.menu.pageSize)
-      const blog_type_id = yield select(state => state.menu.type_id)
-      const response = yield call(getList, {page, per_page: pageSize, blog_type_id });
-      if(response.code === 0) {
-        
-        yield put({
-          type: 'changeMenuList',
-          payload: response,
-        });
-      }
-    },
     *getPage({payload}, { call, put }) {
       yield put({
         type: 'changeMenuPage',
@@ -111,6 +96,10 @@ const Model: LoginModelType = {
     *setType({ payload }, { call, put, select }) {
       const blog_type_id = yield select(state => state.menu.type_id)
       console.log(blog_type_id, payload, 'modal')
+      yield put ({
+        type: 'setTypeHandle',
+        payload
+      })
       if(payload.id === 'private' && blog_type_id === 'private') {
         const token = yield select(state =>state.menu.token)
         console.log(token, 'modal token')
@@ -123,10 +112,7 @@ const Model: LoginModelType = {
         }
       }
 
-      yield put ({
-        type: 'setTypeHandle',
-        payload
-      })
+      
     },
 
     // 登录
