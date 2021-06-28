@@ -39,6 +39,7 @@ function Header (props: any) {
 
   const titleHandle = () => {
     const hashname = props.match.url
+    console.log(hashname === '/')
     if(hashname === '/') {
       // 在首页，清除分类信息
       props.dispatch({
