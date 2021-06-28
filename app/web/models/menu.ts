@@ -63,7 +63,7 @@ const Model: LoginModelType = {
       const page = yield select(state =>state.menu.page)
       const pageSize = yield select(state =>state.menu.pageSize)
       const blog_type_id = yield select(state => state.menu.type_id)
-      const response = yield call(blog_type_id==='private' ? getPrivateList : getList, {page, per_page: pageSize });
+      const response = yield call(blog_type_id==='private' ? getPrivateList : getList, {page, per_page: pageSize,blog_type_id });
       if(response.code === 0) {
         
         yield put({
