@@ -35,7 +35,6 @@ function Header (props: any) {
 
   const titleHandle = () => {
     const hashname = props.match.url
-    console.log(hashname === '/')
     props.dispatch({
       type: 'menu/setType',
       payload: {id: null}
