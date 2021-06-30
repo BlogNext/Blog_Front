@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-30 09:09:41
+ * @LastEditTime: 2021-06-30 09:25:40
  */
 import { defineConfig } from 'umi';
 import { join } from 'path';
@@ -13,7 +13,7 @@ const manifest = join(cwd, 'config/manifest.json');
 
 export default defineConfig({
   ssr: {
-    devServerRender: true,
+    devServerRender: false,
     // forceInitial: true,
     // mode: 'stream'
   },

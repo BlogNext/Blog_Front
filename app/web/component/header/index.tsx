@@ -4,7 +4,7 @@ import { SettingOutlined, MessageOutlined, BulbOutlined, KeyOutlined } from '@an
 import { getSearchList } from '../../api/api'
 import { Select, Spin } from 'antd'
 import './style.less'
-import { history } from 'umi';
+import { history, withRouter } from 'umi';
 import { connect } from 'dva';
 
 
@@ -12,6 +12,7 @@ function Header (props: any) {
   const [data, setData] = useState([])
   const [value, setValue] = useState(undefined)
   const [fetching, setFetching] = useState(false)
+  console.log(props)
   useEffect(() => {
   }, [''])
 
@@ -29,23 +30,24 @@ function Header (props: any) {
 
   const handleChange = (value) => {
     history.push({
-      pathname: '/detail',
-      query: {
-        id: value.value
-      }
+      pathname: `/detail/${value.value}`,
     })
   }
 
   const titleHandle = () => {
-
-    const hashname = window.location.hash
-    if(hashname === '#/') {
+    const hashname = props.match.url
+    console.log(hashname === '/')
+    if(hashname === '/') {
       // 在首页，清除分类信息
       props.dispatch({
-        type: 'menu/cleanType',
-        payload: {}
+        type: 'menu/setType',
+        payload: {id: null}
       })
     } else {
+      props.dispatch({
+        type: 'menu/setType',
+        payload: {id: null}
+      })
       // 不在首页，返回首页
       history.push({
         pathname: '/',
@@ -55,9 +57,9 @@ function Header (props: any) {
 
   return(
     <div className="component-header flex">
-      <div className="component-header_title flex">
+      <div onClick={titleHandle} className="component-header_title flex">
         {/* <HomeOutlined className='component-header_title_icon' /> */}
-        <span onClick={titleHandle}>LaughingZhu's Blog</span>
+        <span >LaughingZhu's Blog</span>
       </div>
 
       <div className="component-header_container flex">
@@ -116,4 +118,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

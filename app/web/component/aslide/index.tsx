@@ -139,6 +139,7 @@ function Aside (props: any) {
   const typeHandle = (id: any) => {
     if (location.href.indexOf('/detail') < 0) {
       // 在首页，更新分类信息
+      if(props.type_id === id) return false;
       props.dispatch({
         type: 'menu/setType',
         payload: {id}
@@ -209,11 +210,12 @@ function Aside (props: any) {
 }
 
 function mapStateToProps(state) {
-  const { menuList, page, pageSize, total, token} = state.menu;
+  const { menuList, page, pageSize, total, token, type_id} = state.menu;
   return {
     loading: state.loading.models.menu,
     menuList,
     page,
+    type_id,
     pageSize,
     total,
     token

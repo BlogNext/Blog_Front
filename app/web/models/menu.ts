@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { Effect } from 'dva';
 
-import { getList, login, getDetail } from '../api/api'
+import { getList, login, getDetail, getPrivateList } from '../api/api'
 import { message } from 'antd';
 
 
@@ -62,7 +62,9 @@ const Model: LoginModelType = {
       const page = yield select(state =>state.menu.page)
       const pageSize = yield select(state =>state.menu.pageSize)
       const blog_type_id = yield select(state => state.menu.type_id)
-      const response = yield call(getList, {page, per_page: pageSize, blog_type_id });
+      const response = blog_type_id==='private' ?
+      yield call(getPrivateList, {page, per_page: pageSize }):
+      yield call(getList, {page, per_page: pageSize, blog_type_id });
       if(response.code === 0) {
         
         yield put({
@@ -77,10 +79,15 @@ const Model: LoginModelType = {
         });
       }
     },
+
     *getPage({payload}, { call, put }) {
       yield put({
         type: 'changeMenuPage',
         payload: payload.page
+      });
+      yield put({
+        type: 'getLists',
+        payload: {},
       });
     },
 
@@ -89,26 +96,33 @@ const Model: LoginModelType = {
       yield put ({
         type: 'cleanTypeHandle',
       })
+      // yield put({
+      //   type: 'getLists',
+      //   payload: {},
+      // });
     },
 
     // 设置分类信息
     *setType({ payload }, { call, put, select }) {
-      
       const blog_type_id = yield select(state => state.menu.type_id)
+      console.log(blog_type_id, payload, 'modal')
+      yield put ({
+        type: 'setTypeHandle',
+        payload
+      })
       if(payload.id === 'private' && blog_type_id === 'private') {
         const token = yield select(state =>state.menu.token)
+        console.log(token, 'modal token')
         if(token === null || token === '') {
-          // 未登录状态
+          // 访问私人目录，且未登录状态，
           yield put({
             type: 'getLists',
             payload: {},
           });
         }
       }
-      yield put ({
-        type: 'setTypeHandle',
-        payload
-      })
+
+      
     },
 
     // 登录
