@@ -50,7 +50,6 @@ function Header (props: any) {
   return(
     <div className="component-header flex">
       <div onClick={titleHandle} className="component-header_title flex">
-        {/* <HomeOutlined className='component-header_title_icon' /> */}
         <span >LaughingZhu's Blog</span>
       </div>
 
