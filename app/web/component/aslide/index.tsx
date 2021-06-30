@@ -146,6 +146,10 @@ function Aside (props: any) {
       })
     } else {
       // 不在首页，返回首页
+      props.dispatch({
+        type: 'menu/setType',
+        payload: {id}
+      })
       history.push({
         pathname: '/',
       })

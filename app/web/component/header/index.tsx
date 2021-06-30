@@ -12,7 +12,6 @@ function Header (props: any) {
   const [data, setData] = useState([])
   const [value, setValue] = useState(undefined)
   const [fetching, setFetching] = useState(false)
-  console.log(props)
   useEffect(() => {
   }, [''])
 
@@ -37,17 +36,11 @@ function Header (props: any) {
   const titleHandle = () => {
     const hashname = props.match.url
     console.log(hashname === '/')
-    if(hashname === '/') {
-      // 在首页，清除分类信息
-      props.dispatch({
-        type: 'menu/setType',
-        payload: {id: null}
-      })
-    } else {
-      props.dispatch({
-        type: 'menu/setType',
-        payload: {id: null}
-      })
+    props.dispatch({
+      type: 'menu/setType',
+      payload: {id: null}
+    })
+    if(hashname !== '/') {
       // 不在首页，返回首页
       history.push({
         pathname: '/',
