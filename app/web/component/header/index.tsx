@@ -16,7 +16,7 @@ function Header (props: any) {
   }, [''])
 
   const getSearch = async(value) => {
-    
+    window._hmt.push(['_trackEvent', 'search', 'click', value]);
     let res = await getSearchList({keyword: value})
     if(res.code === 0) {
       setData(res.data.list)
