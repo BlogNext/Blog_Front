@@ -46,7 +46,6 @@ function beforNumber(code) {
 const Detail = (props: any) => {
   const { id } = useParams()
   useEffect(() => {
-    window._hmt.push(['_trackPageview', location.href]);
     updateDetail()
   }, [id])
 

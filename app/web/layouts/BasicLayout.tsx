@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-12 21:17:25
  * @LastEditros: 
- * @LastEditTime: 2021-07-01 17:49:41
+ * @LastEditTime: 2021-07-01 17:52:52
  */
 import React, { Component } from "react";
 import "./index.less";
@@ -39,7 +39,6 @@ class BasicLayout extends Component <IProps, IState> {
     }
   }
   componentDidMount = () => {
-    window._hmt.push(['_trackPageview', location.href]);
     const searchQuery = qs.parse(location.search, {ignoreQueryPrefix: true })
     new oauthSdk('blog_1616644960', 'https://blog.laughingzhu.cn/front/login/login_blog_next_pre_code').login()
     if(searchQuery.token) {
