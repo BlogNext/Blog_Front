@@ -11,7 +11,7 @@ import { getLocalStorage, setLocalStorage } from '../../utils/utils'
 
 // iconfont 库
 const MyIcon = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2023298_twboscs9oke.js', // 在 iconfont.cn 上生成
+  scriptUrl: '//at.alicdn.com/t/font_2023298_sg9noq31xtk.js', // 在 iconfont.cn 上生成
 });
 
 const IconAside = [
@@ -30,6 +30,10 @@ const IconAside = [
   {
     icon: 'icon-books',
     name: 'Book'
+  },
+  {
+    icon: 'icon-react',
+    name: 'React'
   }
 ]
 
