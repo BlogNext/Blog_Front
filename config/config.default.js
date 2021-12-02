@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-23 15:03:26
+ * @LastEditTime: 2021-12-02 21:56:12
  */
 'use strict';
 const path = require('path');
@@ -33,7 +33,9 @@ module.exports = (appInfo, appConfig = {}) => {
       },
     },
   };
-
+  config.logger = {
+    disableConsoleAfterReady: false,
+  };
   config.view = {
     mapping: {
       '.html': 'nunjucks',
