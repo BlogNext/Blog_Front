@@ -4,8 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "egg-scripts start --port=7001 --title=egg-umi-ssr --env=prod",
-    "stop": "egg-scripts stop --title=egg-umi-ssr",
+    "start": "egg-scripts start --port=7001 --env=prod",
+    "stop": "egg-scripts stop",
     "dev": "egg-bin dev --port=7001 --sticky ",
     "build": "cross-env APP_ROOT=app/web umi build",
     "debug": "cross-env RM_TMPDIR=none COMPRESS=none egg-bin debug",
