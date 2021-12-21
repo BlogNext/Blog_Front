@@ -21,4 +21,5 @@ services:
         npm install
         npm run stop
         npm run build
+        chmod -R 775 ./app/public/
         npm run start
