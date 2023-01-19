@@ -62,7 +62,7 @@ function Header (props: any) {
     <div className="component-header flex">
       <div onClick={titleHandle} className="component-header_title flex">
         {/* <HomeOutlined className='component-header_title_icon' /> */}
-        <span >LaughingZhu's Blog</span>
+        <span >LaughingZhu的技术博客</span>
       </div>
 
       <div className="component-header_container flex">
