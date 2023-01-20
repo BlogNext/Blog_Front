@@ -5,9 +5,9 @@ import { getDetail } from '../../api/api'
 import './style.less'
 import { Badge } from 'antd'
 import * as dayjs from 'dayjs'
-import hljs from 'highlight.js';
+const hljs = require('highlight.js');
 import 'highlight.js/styles/darcula.css'
-hljs.initHighlightingOnLoad()
+// hljs.initHighlightingOnLoad()
 let localizedFormat = require('dayjs/plugin/localizedFormat')
 import { connect, isBrowser, useParams, Helmet } from 'umi';
 

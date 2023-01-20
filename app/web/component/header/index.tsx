@@ -12,12 +12,10 @@ function Header (props: any) {
   const [data, setData] = useState([])
   const [value, setValue] = useState(undefined)
   const [fetching, setFetching] = useState(false)
-  console.log(props)
   useEffect(() => {
   }, [''])
 
   const getSearch = async(value) => {
-    
     let res = await getSearchList({keyword: value})
     if(res.code === 0) {
       setData(res.data.list)
@@ -30,27 +28,17 @@ function Header (props: any) {
 
   const handleChange = (value) => {
     history.push({
-      pathname: '/detail',
-      query: {
-        id: value.value
-      }
+      pathname: `/detail/${value.value}`,
     })
   }
 
   const titleHandle = () => {
     const hashname = props.match.url
-    console.log(hashname === '/')
-    if(hashname === '/') {
-      // 在首页，清除分类信息
-      props.dispatch({
-        type: 'menu/setType',
-        payload: {id: null}
-      })
-    } else {
-      props.dispatch({
-        type: 'menu/setType',
-        payload: {id: null}
-      })
+    props.dispatch({
+      type: 'menu/setType',
+      payload: {id: null}
+    })
+    if(hashname !== '/') {
       // 不在首页，返回首页
       history.push({
         pathname: '/',
@@ -62,7 +50,7 @@ function Header (props: any) {
     <div className="component-header flex">
       <div onClick={titleHandle} className="component-header_title flex">
         {/* <HomeOutlined className='component-header_title_icon' /> */}
-        <span >LaughingZhu的技术博客</span>
+        <span >LaughingZhu's Blog</span>
       </div>
 
       <div className="component-header_container flex">

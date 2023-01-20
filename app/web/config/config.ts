@@ -3,19 +3,13 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-28 16:38:09
  * @LastEditros: 
- * @LastEditTime: 2021-06-28 21:09:20
+ * @LastEditTime: 2021-07-01 17:36:21
  */
 import { defineConfig } from 'umi';
-import { join } from 'path';
-
-const cwd = process.cwd();
-const manifest = join(cwd, 'config/manifest.json');
 
 export default defineConfig({
   ssr: {
     devServerRender: false,
-    // forceInitial: true,
-    // mode: 'stream'
   },
   hash: true,
   outputPath: '../public',
@@ -27,9 +21,7 @@ export default defineConfig({
   },
   publicPath: '/public/',
   base: '/',
-  // favicon: '../public/favicon.ico',
   dynamicImport: {},
-  // runtimePublicPath: true,
   locale: {
     default: 'zh-CN',
     antd: false,
@@ -38,25 +30,12 @@ export default defineConfig({
     
     baseSeparator: '-',
   },
-  // exportStatic: {},
   dva: {
     immer: true,
-    // hmr: false,
   },
-  // metas: [
-  //   {
-  //     name: 'keywords',
-  //     content: 'LaughingZhu Blog LaughingZhu',
-  //   },
-  //   {
-  //     name: 'description',
-  //     content: `LaughingZhu's Blog, 技术、生活、兴趣博客`,
-  //   },
-  // ],
   nodeModulesTransform: {
     type: 'none',
   },
-  // title: "LaughingZhu Blog",
   title: false,
   routes: [
     
@@ -89,5 +68,9 @@ export default defineConfig({
       
     },
   ],
+  analytics: {
+    // ga: 'google analytics code',
+    baidu: '3fab054e7fc3980bf1641413481bdb86',
+  },
   
 });

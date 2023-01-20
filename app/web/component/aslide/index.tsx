@@ -11,7 +11,7 @@ import { getLocalStorage, setLocalStorage } from '../../utils/utils'
 
 // iconfont 库
 const MyIcon = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2023298_twboscs9oke.js', // 在 iconfont.cn 上生成
+  scriptUrl: '//at.alicdn.com/t/font_2023298_sg9noq31xtk.js', // 在 iconfont.cn 上生成
 });
 
 const IconAside = [
@@ -30,6 +30,10 @@ const IconAside = [
   {
     icon: 'icon-books',
     name: 'Book'
+  },
+  {
+    icon: 'icon-react',
+    name: 'React'
   }
 ]
 
@@ -139,12 +143,17 @@ function Aside (props: any) {
   const typeHandle = (id: any) => {
     if (location.href.indexOf('/detail') < 0) {
       // 在首页，更新分类信息
+      if(props.type_id === id) return false;
       props.dispatch({
         type: 'menu/setType',
         payload: {id}
       })
     } else {
       // 不在首页，返回首页
+      props.dispatch({
+        type: 'menu/setType',
+        payload: {id}
+      })
       history.push({
         pathname: '/',
       })
@@ -209,11 +218,12 @@ function Aside (props: any) {
 }
 
 function mapStateToProps(state) {
-  const { menuList, page, pageSize, total, token} = state.menu;
+  const { menuList, page, pageSize, total, token, type_id} = state.menu;
   return {
     loading: state.loading.models.menu,
     menuList,
     page,
+    type_id,
     pageSize,
     total,
     token

@@ -3,7 +3,7 @@
  * @Author: LaughingZhu
  * @Date: 2021-05-12 21:17:25
  * @LastEditros: 
- * @LastEditTime: 2021-06-16 17:23:43
+ * @LastEditTime: 2021-10-09 14:38:56
  */
 import * as React from "react";
 import "./style.less";
@@ -32,6 +32,10 @@ class Index extends React.Component<IndexProps, IndexState> {
           <meta name="description" content={`LaughingZhu's Blog, 技术、生活、兴趣博客`} />
         </Helmet>
         <List />
+        <div className="index-beian">
+          <span>Copyright © 2020-2021 LaughingZhu 版权所有 </span>
+          <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2020039821号-1</a>
+        </div>
       </div>
     );
   }
