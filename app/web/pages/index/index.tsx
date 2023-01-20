@@ -27,7 +27,7 @@ class Index extends React.Component<IndexProps, IndexState> {
       <div className={`index`}>
         <Helmet encodeSpecialCharacters={false}>
           {/* <html lang="en" data-direction="666" /> */}
-          <title>LaughingZhu's Blog</title>
+          <title>LaughingZhu的技术博客</title>
           <meta name="keywords" content='LaughingZhu Blog LaughingZhu' />
           <meta name="description" content={`LaughingZhu's Blog, 技术、生活、兴趣博客`} />
         </Helmet>
